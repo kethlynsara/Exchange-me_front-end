@@ -13,6 +13,7 @@ function Book({element}) {
                     <div>{element.conservationState}</div>
                     <div>{element.publisher}</div>
                     <div>{element.price}</div>
+                    <div>{element.isbn}</div>
                 </Info>  
             {/* </StyledLink>               */}
         </Container>
@@ -36,11 +37,6 @@ const Cover = styled.img`
 `;
 
 const Info = styled.div`
-    /* width: 100%;
-
-    display: flex;
-    flex-direction: column;
-    background-color: salmon; */
     margin-top: 15px;
 `;
 
