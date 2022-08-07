@@ -2,6 +2,7 @@ import styled from "styled-components";
 // import { Link } from "react-router-dom";
 
 function Book({element}) {
+    console.log("el", element)
 
     return (
         <Container>
@@ -27,7 +28,7 @@ const Container = styled.div`
 
     display: flex;
     flex-wrap: wrap; 
-    background-color: salmon;
+    z-index: 1200;
 `;
 
 const Cover = styled.img`
