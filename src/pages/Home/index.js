@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
+import Menu from "../../components/Menu";
 import Book from "../../components/Book";
 import UserContext from "../../contexts/UserContext";
 
@@ -43,6 +44,7 @@ function Home() {
     
     return books.all.length > 0 ? (
         <Container>
+            <Menu />
             <List>
                 <h1>New</h1>
                 {books.new.length <= 5 ? books.new.map((element, index) => <Book element={element} key={index}/>)
