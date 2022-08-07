@@ -46,7 +46,7 @@ function ExchangeRegister() {
 
         const data = localStorage.getItem("userInfo");
         const userInfo = JSON.parse(data)
-        const { token } = userInfo;
+        const { token, userId } = userInfo;
         const config = {
           headers: {
             Authorization: `Bearer ${token}`
@@ -66,7 +66,7 @@ function ExchangeRegister() {
                 isbn: element.isbn,
                 available: true,
                 isFromExchange: true,
-                userId: 2
+                userId
             }
             console.log("hey")
             await axios.post(`${process.env.REACT_APP_API_URL}/books/register`, book, config);
