@@ -11,8 +11,10 @@ import AllBooks from "./pages/AllBooks";
 
 function App() {
   const [bookStatus, setBookStatus] = useState("");
+  const [pix, setPix] = useState("");
+
   return (
-    <UserContext.Provider value={{ bookStatus, setBookStatus}}>
+    <UserContext.Provider value={{ bookStatus, setBookStatus, pix, setPix}}>
       <BrowserRouter>
         <Routes>
           <Route path="/signup" element={<SignUp />} />
