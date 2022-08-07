@@ -2,8 +2,6 @@ import styled from "styled-components";
 // import { Link } from "react-router-dom";
 
 function Book({element}) {
-    console.log("el", element)
-
     return (
         <Container>
             {/* <StyledLink> */}

@@ -36,7 +36,6 @@ function Exchange() {
         }
         getUserBooks();
     }, [])
-    console.log(books)
 
     function getCashback() {
         if (books.length > 0) {
@@ -55,18 +54,28 @@ function Exchange() {
     async function checkBankCode() {
         try {
             const { data } = await axios.get(`https://brasilapi.com.br/api/banks/v1/${account.bankCode}`);
-            console.log("bank", data)
             setAccount({...account, bank: data.fullName})
         }catch(error) {
             console.log(error.response);
         }
     }
 
-    async function updateUserCashback() {
-        setcashbackAmount(cashbackAmount - withdraw);
+    async function updateUserCashback(e) {
+        e.preventDefault();
+        const updatedCashback = cashbackAmount - withdraw;
+        setcashbackAmount(updatedCashback);
+        setVisibleWithdrawForm(false);
+        setAccount({
+            bank: "",
+            bankCode: "",
+            agency: "",
+            accountNumber: "",
+            cpf: ""
+        });
+        setWithdraw(0)
+        alert("Dados coletados com sucesso! Dentro de 24h a transferência será concluída");
         try {
-            // axios.post(`${process.env.REACT_APP_API_URL}/user/update`, {cashback: cashbackAmount}, config)
-            //alert("Dados coletados com sucesso! Dentro de 24h a transferência será concluída");
+            await axios.post(`${process.env.REACT_APP_API_URL}/exchanges/user/update`, {cashback: updatedCashback.toString()}, config);            
         } catch (error) {
             console.log(error.response)
         }
