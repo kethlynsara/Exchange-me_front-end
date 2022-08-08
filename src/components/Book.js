@@ -1,7 +1,32 @@
+import axios from "axios";
 import styled from "styled-components";
-// import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Book({element}) {
+    const userData = localStorage.getItem("userInfo");
+    const userInfo = JSON.parse(userData);
+    const { token, userId } = userInfo;
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`
+      } 
+    }
+    const navigate = useNavigate();
+
+    async function addBookToCart(element) {
+        const cartInfo = {
+            userId,
+            bookId: element.id,
+            active: true
+        }
+        try {
+            axios.post(`${process.env.REACT_APP_API_URL}/cart`, cartInfo, config);
+            navigate("/cart")
+        } catch (error) {
+            console.log(error.response);
+        }
+    }
+
     return (
         <Container>
             {/* <StyledLink> */}
@@ -13,6 +38,7 @@ function Book({element}) {
                     <div>{element.publisher}</div>
                     <div>{element.price}</div>
                     <div>{element.isbn}</div>
+                    {userId !== element.userId ? <button onClick={() => addBookToCart(element)}>Comprar</button> : ""}
                 </Info>  
             {/* </StyledLink>               */}
         </Container>
@@ -37,6 +63,12 @@ const Cover = styled.img`
 
 const Info = styled.div`
     margin-top: 15px;
+
+    button {
+        :hover {
+            cursor: pointer;
+        }
+    }
 `;
 
 // const StyledLink = styled(Link)`

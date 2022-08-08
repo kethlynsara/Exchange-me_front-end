@@ -8,6 +8,7 @@ import Exchange from "./pages/Exchange";
 import ExchangeRegister from "./pages/ExchangeRegister";
 import UserContext from "./contexts/UserContext";
 import AllBooks from "./pages/AllBooks";
+import Cart from "./pages/Cart";
 
 function App() {
   const [bookStatus, setBookStatus] = useState("");
@@ -23,6 +24,7 @@ function App() {
           <Route path="/books" element={<AllBooks />} />
           <Route path="/exchanges" element={<Exchange />} />
           <Route path="/exchanges/register" element={<ExchangeRegister />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>
