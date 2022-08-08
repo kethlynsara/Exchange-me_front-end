@@ -9,6 +9,7 @@ import ExchangeRegister from "./pages/ExchangeRegister";
 import UserContext from "./contexts/UserContext";
 import AllBooks from "./pages/AllBooks";
 import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
 
 function App() {
   const [bookStatus, setBookStatus] = useState("");
@@ -25,6 +26,7 @@ function App() {
           <Route path="/exchanges" element={<Exchange />} />
           <Route path="/exchanges/register" element={<ExchangeRegister />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>
