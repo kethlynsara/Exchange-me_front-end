@@ -14,9 +14,10 @@ import Checkout from "./pages/Checkout";
 function App() {
   const [bookStatus, setBookStatus] = useState("");
   const [pix, setPix] = useState("");
-
+  const [confirmOrderStep, setConfirmOrderStep] = useState(0);
+  
   return (
-    <UserContext.Provider value={{ bookStatus, setBookStatus, pix, setPix}}>
+    <UserContext.Provider value={{ bookStatus, setBookStatus, pix, setPix, confirmOrderStep, setConfirmOrderStep}}>
       <BrowserRouter>
         <Routes>
           <Route path="/signup" element={<SignUp />} />

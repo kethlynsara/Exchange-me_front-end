@@ -1,13 +1,16 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import CartElement from "../../components/CartElement";
+import UserContext from "../../contexts/UserContext";
 
 function Cart() {
     const [books, setBooks] = useState([]);
-    let total = 0
+    const { setConfirmOrderStep } = useContext(UserContext);
+    const navigate = useNavigate();
+    let total = 0;
     const userData = localStorage.getItem("userInfo");
     const userInfo = JSON.parse(userData);
     const { token } = userInfo;
@@ -16,7 +19,6 @@ function Cart() {
         Authorization: `Bearer ${token}`
       } 
     }
-    const navigate = useNavigate();
 
     useEffect(() => {
         async function getUserCart() {
@@ -44,7 +46,10 @@ function Cart() {
 
             <Checkout>
                 <p>Total: R$ {total.toFixed(2)}</p>
-                <button onClick={() => navigate("/checkout")}>Checkout</button>
+                <button onClick={() => {
+                    setConfirmOrderStep(1);
+                    navigate("/checkout");
+                }}>Checkout</button>
             </Checkout>
         </Container>
     )

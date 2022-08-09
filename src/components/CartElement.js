@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 function CartElement({element}) {
-    console.log("element", element)
+    
     return (
         <Container>
             <Cover src={element.image} />
