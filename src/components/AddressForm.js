@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
 import styled from 'styled-components';
 import { FaRegCheckCircle } from 'react-icons/fa';
 
@@ -8,26 +7,6 @@ import UserContext from '../contexts/UserContext';
 
 function AddressForm({inputs, setInputs}) {
     const { setConfirmOrderStep } = useContext(UserContext);
-    const userData = localStorage.getItem("userInfo");
-    const userInfo = JSON.parse(userData);
-    const { token } = userInfo;
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`
-      } 
-    }
-    const navigate = useNavigate();
-    // const [inputs, setInputs] = useState({
-    //     nome: '',
-    //     email: '',
-    //     telefone: '',
-    //     cep: '',
-    //     rua: '',
-    //     num: '',
-    //     bairro: '',
-    //     cidade: '',
-    //     uf: ''
-    // });
 
     function clearForm() {
         setInputs({...inputs,
@@ -65,29 +44,6 @@ function AddressForm({inputs, setInputs}) {
         } else {
             clearForm();
             alert("Formato de CEP inválido.");
-        }
-    }
-
-    async function confirmOrder(e) {
-        e.preventDefault();
-        try {
-            console.log(e)
-            // axios.post(process.env.REACT_APP_HEROKU_URL + '/delivery', {
-            //     name: inputs.nome,
-            //     email: inputs.email,
-            //     phone: inputs.telefone,
-            //     address: {
-            //         cep: inputs.cep,
-            //         rua: inputs.rua,
-            //         num: inputs.num,
-            //         bairro: inputs.bairro,
-            //         cidade: inputs.cidade,
-            //         uf: inputs.uf
-            //     }
-            // }, config);
-            // navigate('/success');
-        }catch(e) {
-            console.log(e);
         }
     }
 
@@ -132,10 +88,7 @@ function AddressForm({inputs, setInputs}) {
                         <p>Frete grátis</p>
                     </Frete>
 
-                    <Button type='button' onClick={() => {
-                        confirmOrder();
-                        setConfirmOrderStep(2);
-                    }}>Finalizar Pedido</Button>
+                    <Button type='button' onClick={() => setConfirmOrderStep(2)}>Finalizar Pedido</Button>
                </form>
             </Container>
         </Box>

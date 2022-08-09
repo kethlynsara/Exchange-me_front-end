@@ -18,13 +18,19 @@ function Checkout() {
         cidade: '',
         uf: ''
     });
+    const [payment, setPayment] = useState({
+        name: "",
+        cardNumber: "",
+        expirationDate: "",
+        cvv: ""
+    })
 
     if (confirmOrderStep === 1) {
         return <AddressForm inputs={address} setInputs={setAddress}/>
     } else if (confirmOrderStep === 2) {
-        return <PaymentDetails />
+        return <PaymentDetails payment={payment} setPayment={setPayment} />
     } else if (confirmOrderStep === 3) {
-        return <ReviewOrder />
+        return <ReviewOrder payment={payment} address={address} />
     } else {
         return <p>Não foi possível carregar as informações</p>
     }
