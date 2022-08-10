@@ -1,6 +1,6 @@
 import axios from "axios";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function Book({element}) {
     console.log('el', element)
@@ -30,7 +30,7 @@ function Book({element}) {
 
     return (
         <Container>
-            {/* <StyledLink> */}
+            <StyledLink to={"/books/" + element.id}>
                 <Cover src={element.image} />
                 <Info>
                     <div>{element.title}</div>
@@ -41,7 +41,7 @@ function Book({element}) {
                     <div>{element.isbn}</div>
                     {userId !== element.userId ? <button onClick={() => addBookToCart(element)}>Comprar</button> : ""}
                 </Info>  
-            {/* </StyledLink>               */}
+            </StyledLink>              
         </Container>
     )
 }
@@ -72,9 +72,9 @@ const Info = styled.div`
     }
 `;
 
-// const StyledLink = styled(Link)`
-//     /* text-decoration: none; */
-//     display: flex;
-//     flex-wrap: wrap; 
-//     background-color: salmon;
-// `;
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    /* display: flex;
+    flex-wrap: wrap; 
+    background-color: salmon; */
+`;

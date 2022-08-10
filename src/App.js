@@ -11,6 +11,7 @@ import AllBooks from "./pages/AllBooks";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import ExchangeRequest from "./pages/ExchangeRequest";
+import Book from "./pages/Book";
 
 function App() {
   const [bookStatus, setBookStatus] = useState("");
@@ -25,6 +26,7 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/" element={<Home />} />
           <Route path="/books" element={<AllBooks />} />
+          <Route path="/books/:bookId" element={<Book />} />
           <Route path="/exchanges" element={<Exchange />} />
           <Route path="/exchanges/requests/:exchangeId" element={<ExchangeRequest />} />
           <Route path="/exchanges/register" element={<ExchangeRegister />} />
