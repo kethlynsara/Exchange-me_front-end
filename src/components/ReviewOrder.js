@@ -41,18 +41,25 @@ function ReviewOrder({payment, address}) {
             address: {
                 cep: address.cep,
                 street: address.rua,
-                number: address.num,
+                number: parseInt(address.num),
                 district: address.bairro,
                 city: address.cidade,
                 uf: address.uf
             },
-            payment
+            payment: {
+                userId: userInfo.userId,
+                name: payment.name,
+                number: payment.cardNumber,
+                cvv: parseInt(payment.cvv),
+                expirationDate: payment.expirationDate   
+            }
         }
         try {
             console.log(order);
             await axios.post(`${process.env.REACT_APP_API_URL}/order`, order, config);
         } catch (error) {
             console.log(error.response)
+            alert("Não foi possível efetuar a compra");
         }
     }
 
