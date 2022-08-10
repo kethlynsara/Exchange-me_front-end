@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 function Book({element}) {
+    console.log('el', element)
     const userData = localStorage.getItem("userInfo");
     const userInfo = JSON.parse(userData);
     const { token, userId } = userInfo;

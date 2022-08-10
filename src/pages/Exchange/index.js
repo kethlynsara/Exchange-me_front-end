@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import Book from "../../components/Book";
-// import MultipleSelectChip from "../../components/PixOptions";
+import ExchangeRequestBook from "../../components/ExchangeRequestBook";
 
 function Exchange() {
     const [books, setBooks] = useState([]);
+    const [exchangeBooks, setExchangeBooks] = useState([]);
     const [withdraw, setWithdraw] = useState(0);
     const [account, setAccount] = useState({
         bank: "",
@@ -32,10 +33,20 @@ function Exchange() {
         async function getUserBooks() {
             const response = await axios.get(`${process.env.REACT_APP_API_URL}/exchanges`, config);
             setBooks(response.data);
-            setcashbackAmount(parseFloat(response.data[0].user.cashback).toFixed(2));
+            if (response.data.length > 0) {
+                setcashbackAmount(parseFloat(response.data[0].user.cashback).toFixed(2));                
+            }
         }
         getUserBooks();
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        async function getExchangeRequests() {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/exchanges/requests`, config);
+            setExchangeBooks(response.data);
+        }
+        getExchangeRequests();
+    }, []);
 
     function getCashback() {
         if (books.length > 0) {
@@ -81,6 +92,8 @@ function Exchange() {
         }
     }
 
+    console.log(exchangeBooks)
+
     return (
         <Container>
             <Link to="/exchanges/register">
@@ -92,6 +105,13 @@ function Exchange() {
                 {books.length > 0 ? books.map((element, index) =>  <Book element={element} key={index}/>)
                 :
                 <p>Não há livros disponíveis</p>}
+            </List>
+
+            <List>
+                <h1>Solicitações de troca</h1>
+                {exchangeBooks.length > 0 ? exchangeBooks.map((element, index) =>  <ExchangeRequestBook element={element.orderBook.book} key={index} exchangeBookId={element.id} />)
+                :
+                <p>Não há solicitações disponíveis</p>}
             </List>
 
             <Cashback>

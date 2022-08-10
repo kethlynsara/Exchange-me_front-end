@@ -10,6 +10,7 @@ import UserContext from "./contexts/UserContext";
 import AllBooks from "./pages/AllBooks";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
+import ExchangeRequest from "./pages/ExchangeRequest";
 
 function App() {
   const [bookStatus, setBookStatus] = useState("");
@@ -25,6 +26,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/books" element={<AllBooks />} />
           <Route path="/exchanges" element={<Exchange />} />
+          <Route path="/exchanges/requests/:exchangeId" element={<ExchangeRequest />} />
           <Route path="/exchanges/register" element={<ExchangeRegister />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
