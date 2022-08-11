@@ -31,14 +31,9 @@ function Book({element}) {
     return (
         <Container>
             <StyledLink to={"/books/" + element.id}>
-                <Cover src={element.image} />
                 <Info>
+                    <Cover src={element.image} />
                     <div>{element.title}</div>
-                    <div>{element.author}</div>
-                    <div>{element.conservationState}</div>
-                    <div>{element.publisher}</div>
-                    <div>{element.price}</div>
-                    <div>{element.isbn}</div>
                     {userId !== element.userId ? <button onClick={() => addBookToCart(element)}>Comprar</button> : ""}
                 </Info>  
             </StyledLink>              
@@ -57,13 +52,20 @@ const Container = styled.div`
 `;
 
 const Cover = styled.img`
-    width: 72px;
-    height: 105px;
+    width: 100px;
+    height: 150px;
     margin-top: 15px;
+    margin: auto;
 `;
 
 const Info = styled.div`
     margin-top: 15px;
+    margin-right: 15px;
+    height: 450px;
+    width: 375px;
+    
+    background-color: salmon;
+    border: 1px;
 
     button {
         :hover {

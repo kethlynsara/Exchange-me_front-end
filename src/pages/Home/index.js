@@ -2,6 +2,8 @@ import axios from "axios";
 import styled from "styled-components";
 import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+// import { IoCartOutline } from "react-icons";
+import { BsCart2 } from 'react-icons/bs';
 
 import Menu from "../../components/Menu";
 import Book from "../../components/Book";
@@ -44,26 +46,41 @@ function Home() {
     
     return books.all.length > 0 ? (
         <Container>
-            <Menu />
+            <NavBar>
+                <p>Olá!</p>
+                <h1>Exchange Me</h1>
+                <div>
+                    <BsCart2 />
+                    <Menu />    
+                </div>
+            </NavBar>
+
             <List>
                 <h1>New</h1>
-                {books.new.length <= 5 ? books.new.map((element, index) => <Book element={element} key={index}/>)
-                : getBooksSection(books.new)                              
-                }
+                <Books>
+                    {books.new.length <= 5 ? books.new.map((element, index) => <Book element={element} key={index}/>)
+                    : getBooksSection(books.new)                              
+                    }
+                </Books>
+ 
             </List>
 
             <List>
                 <h1>Used</h1>
-                {books.used.length <= 5 ? books.used.map((element, index) => <Book element={element} key={index}/>)
-                : getBooksSection(books.used)                              
-                }
+                <Books>
+                    {books.used.length <= 5 ? books.used.map((element, index) => <Book element={element} key={index}/>)
+                    : getBooksSection(books.used)                              
+                    }
+                </Books>
             </List>
 
             <List>
                 <h1>Newest</h1>
-                {books.all.length <= 5 ? books.all.map((element, index) => <Book element={element} key={index}/>)
-                : getBooksSection(books.all)                              
-                }
+                <Books>
+                    {books.all.length <= 5 ? books.all.map((element, index) => <Book element={element} key={index}/>)
+                    : getBooksSection(books.all)                              
+                    }
+                </Books>
                 
             </List>
 
@@ -78,16 +95,40 @@ function Home() {
 
 export default Home;
 
+const NavBar = styled.header`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: salmon;
+    width: 100%;
+    padding: 10px;
+
+    div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: white;
+    }
+`;
+
 const Container = styled.div`
+    padding: 10px;
     display: flex;
     flex-wrap: wrap;
     /* justify-content: center; */
+    background-color: green;
 `;
 
 const List = styled.div`
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    margin-top: 30px;
+`;
+
+const Books = styled.div`
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
 `;
 
 const Button = styled.button`
