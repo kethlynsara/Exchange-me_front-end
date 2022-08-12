@@ -1,5 +1,5 @@
 import * as React from "react";
-import { styled, alpha } from "@mui/material/styles";
+import { styled, alpha, createTheme, ThemeProvider } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -11,6 +11,8 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import HelpIcon from "@mui/icons-material/Help";
 import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
+
+import MenuIcon from '@mui/icons-material/Menu';
 
 import { useNavigate } from "react-router-dom";
 
@@ -57,20 +59,20 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-// const theme = createTheme({
-//   components: {
-//     MuiButton: {
-//       styleOverrides: {
-//         // Name of the slot
-//         root: {
-//           background: 'black',
-//           width: '10px',
-//           fontSize: '1rem',
-//         },
-//       },
-//     },
-//   },
-// });
+const theme = createTheme({
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          border: 'none',
+          background: 'white',
+          color: 'black',
+          marginLeft: '-50px'
+        },
+      },
+    },
+  },
+});
 
 export default function CustomizedMenus() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -85,19 +87,18 @@ export default function CustomizedMenus() {
 
   return (
     <div>
-      <Button
-        // style={{ width: 30 }}
-        id="demo-customized-button"
-        aria-controls={open ? "demo-customized-menu" : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? "true" : undefined}
-        variant="contained"
-        disableElevation
-        onClick={handleClick}
-        endIcon={<KeyboardArrowDownIcon />}
-      >
-        Menu
-      </Button>
+      <ThemeProvider theme={theme}>
+        <Button
+            id="demo-customized-button"
+            aria-controls={open ? "demo-customized-menu" : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? "true" : undefined}
+            variant="contained"
+            disableElevation
+            onClick={handleClick}
+            // endIcon={<KeyboardArrowDownIcon />}
+          ><MenuIcon /></Button>
+      </ThemeProvider>
       <StyledMenu
         id="demo-customized-menu"
         MenuListProps={{

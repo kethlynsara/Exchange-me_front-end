@@ -1,6 +1,8 @@
 import axios from "axios";
 import styled from "styled-components";
 import { useNavigate, Link } from "react-router-dom";
+import { BsHandbag } from "react-icons/bs";
+import { IoIosHeartEmpty } from "react-icons/io";
 
 function Book({element}) {
     console.log('el', element)
@@ -30,13 +32,25 @@ function Book({element}) {
 
     return (
         <Container>
-            <StyledLink to={"/books/" + element.id}>
-                <Info>
-                    <Cover src={element.image} />
-                    <div>{element.title}</div>
-                    {userId !== element.userId ? <button onClick={() => addBookToCart(element)}>Comprar</button> : ""}
-                </Info>  
-            </StyledLink>              
+                <BookElement>
+                    <StyledLink to={"/books/" + element.id}>
+                        <Cover src={element.image} />
+                    </StyledLink>  
+                    <BookInfo>
+                        <p className="status">{element.isFromExchange ? "USADO" : "NOVO"}</p>
+                        <p className="title">{element.title}</p>
+                        <p className="author">{element.author}</p>
+                        <p className="price">R$ {parseFloat(element.price).toFixed(2)} <span>R$ {(parseFloat(element.price) + 10.90).toFixed(2)}</span></p>
+                        <Buttons>
+                            <div className="cart">
+                                {userId !== element.userId ? <BsHandbag onClick={() => addBookToCart(element)} /> : ""}
+                            </div>
+                            <div className="heart">
+                                <IoIosHeartEmpty />
+                            </div>
+                        </Buttons>
+                    </BookInfo>
+                </BookElement>              
         </Container>
     )
 }
@@ -44,28 +58,39 @@ function Book({element}) {
 export default Book;
 
 const Container = styled.div`
-    width: 100%;
+    /* width: 100%;
 
     display: flex;
-    flex-wrap: wrap; 
-    z-index: 1200;
+    justify-content: center;
+
+    margin-left: 10px; */
+
+    font-family: "Inter",Helvetica,Arial,sans-serif;
+    color: #161619;
+    display: inline-block;
 `;
 
 const Cover = styled.img`
-    width: 100px;
-    height: 150px;
-    margin-top: 15px;
+    width: 115px;
+    height: 165px;
     margin: auto;
 `;
 
-const Info = styled.div`
-    margin-top: 15px;
-    margin-right: 15px;
-    height: 450px;
+const BookElement = styled.div`
+    height: 370px;
     width: 375px;
-    
-    background-color: salmon;
     border: 1px;
+    border-style: solid;
+    border-color: #F1F1F1;
+    
+    /* background-color: salmon; */
+    
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    margin-right: 15px;
 
     button {
         :hover {
@@ -73,6 +98,71 @@ const Info = styled.div`
         }
     }
 `;
+
+const BookInfo = styled.div`
+    width: 375px;
+    height: 170px;
+
+    .status {
+        margin-top: 15px;
+        margin-bottom: 10px;
+        margin-left: 15px;
+        font-size: 11px;
+        color: #29de02;
+    }
+
+    .title {
+        margin-bottom: 28px;
+        margin-left: 15px;
+        font-weight: 500;
+        font-size: 17px;
+    }
+
+    .author {
+        color: #7C6E65;
+        font-size: 15px;
+        margin-bottom: 10px;
+        margin-left: 15px;
+    }
+
+    .price {
+        margin-bottom: 15px;
+        margin-left: 15px;
+        font-weight: 500;
+        font-size: 17px;
+
+        span {
+            text-decoration: line-through;
+            color: #fd724c;
+            font-size: 11px;
+            margin-left: 5px;
+        }
+    }
+`;
+
+const Buttons = styled.div`
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+
+    .heart {
+        svg {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+    }
+
+    .cart {
+        svg {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+    }
+
+`;
+
 
 const StyledLink = styled(Link)`
     text-decoration: none;

@@ -12,6 +12,8 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import ExchangeRequest from "./pages/ExchangeRequest";
 import Book from "./pages/Book";
+import Header from "./components/Header";
+import createGlobalStyle from "./assets/css/global";
 
 function App() {
   const [bookStatus, setBookStatus] = useState("");
@@ -21,6 +23,8 @@ function App() {
   return (
     <UserContext.Provider value={{ bookStatus, setBookStatus, pix, setPix, confirmOrderStep, setConfirmOrderStep}}>
       <BrowserRouter>
+        <createGlobalStyle />
+        <Header />
         <Routes>
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
