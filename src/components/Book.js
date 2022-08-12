@@ -37,7 +37,7 @@ function Book({element}) {
                         <Cover src={element.image} />
                     </StyledLink>  
                     <BookInfo>
-                        <p className="status">{element.isFromExchange ? "USADO" : "NOVO"}</p>
+                        <Status color={element.isFromExchange ? "#fc930a" : "#29de02"} >{element.isFromExchange ? "USADO" : "NOVO"}</Status>
                         <p className="title">{element.title}</p>
                         <p className="author">{element.author}</p>
                         <p className="price">R$ {parseFloat(element.price).toFixed(2)} <span>R$ {(parseFloat(element.price) + 10.90).toFixed(2)}</span></p>
@@ -58,13 +58,6 @@ function Book({element}) {
 export default Book;
 
 const Container = styled.div`
-    /* width: 100%;
-
-    display: flex;
-    justify-content: center;
-
-    margin-left: 10px; */
-
     font-family: "Inter",Helvetica,Arial,sans-serif;
     color: #161619;
     display: inline-block;
@@ -83,8 +76,6 @@ const BookElement = styled.div`
     border-style: solid;
     border-color: #F1F1F1;
     
-    /* background-color: salmon; */
-    
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -99,17 +90,17 @@ const BookElement = styled.div`
     }
 `;
 
+const Status = styled.p`
+    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+    font-size: 11px;
+    color: ${(props) => props.color};
+`;
+
 const BookInfo = styled.div`
     width: 375px;
     height: 170px;
-
-    .status {
-        margin-top: 15px;
-        margin-bottom: 10px;
-        margin-left: 15px;
-        font-size: 11px;
-        color: #29de02;
-    }
 
     .title {
         margin-bottom: 28px;
@@ -163,10 +154,6 @@ const Buttons = styled.div`
 
 `;
 
-
 const StyledLink = styled(Link)`
     text-decoration: none;
-    /* display: flex;
-    flex-wrap: wrap; 
-    background-color: salmon; */
 `;
