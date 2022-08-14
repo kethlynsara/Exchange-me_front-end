@@ -49,7 +49,7 @@ function Book() {
             </BookCover>
             <BookInfo>
                 <p className="title">{book.title}</p>
-                <Status color={book.conservationState === "used" ? "#fc930a" : "#29de02"} >{book.isFromExchange ? "USADO" : "NOVO"}</Status>
+                <Status color={book.conservationState === "used" ? "#fc930a" : "#29de02"} >{book.conservationState === "used" ? "USADO" : "NOVO"}</Status>
                 <p className="price">R$ {book.price}</p>
                 {userId !== book.userId ? <button onClick={() => addBookToCart(book)}>Adicionar ao carrinho</button> : ""}
             </BookInfo>
