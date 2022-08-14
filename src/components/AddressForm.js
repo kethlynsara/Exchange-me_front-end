@@ -1,12 +1,14 @@
 import axios from 'axios';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { FaRegCheckCircle } from 'react-icons/fa';
+import { HiOutlineChevronDoubleRight } from "react-icons/hi";
 
 import UserContext from '../contexts/UserContext';
 
 function AddressForm({inputs, setInputs}) {
     const { setConfirmOrderStep } = useContext(UserContext);
+    const [frete, setFrete] = useState(false);
 
     function clearForm() {
         setInputs({...inputs,
@@ -50,7 +52,7 @@ function AddressForm({inputs, setInputs}) {
     return (
         <Box>
             <Container>
-                <H1>Confirme seus dados</H1>
+                <H1>Confirme os dados de entrega</H1>
                 <form>
                     <Input type='text' placeholder='Nome' value={inputs.nome} required
                            onChange={(e) => setInputs({...inputs, nome: e.target.value})}></Input>
@@ -83,25 +85,27 @@ function AddressForm({inputs, setInputs}) {
                             onChange={(e) => setInputs({...inputs, uf: e.target.value})}></Input>
                     </div>
 
-                    <Frete>
+                    <Frete color={frete ? "green" : "#FFFFFF"}  onClick={() => setFrete(!frete)}>
                         <FaRegCheckCircle />
                         <p>Frete grátis</p>
                     </Frete>
-
-                    <Button type='button' onClick={() => setConfirmOrderStep(2)}>Finalizar Pedido</Button>
+                    
+                    <NextIcon onClick={() => setConfirmOrderStep(2)}>
+                        <HiOutlineChevronDoubleRight />
+                    </NextIcon>
+                    {/* <Button type='button' onClick={() => setConfirmOrderStep(2)}>Finalizar Pedido</Button> */}
                </form>
             </Container>
         </Box>
-    )
+
+   )
 }
 
 export default AddressForm;
 
 const H1 = styled.h1`
-    font-style: normal;
-    font-weight: 700;
+    font-weight: 600;
     font-size: 20px;
-    line-height: 23px;
     color: #000000;
     margin-bottom: 48px;
 `;
@@ -114,30 +118,39 @@ const Frete = styled.div`
     margin: 40px 0 47px 0;
     background-color: #FFFFFF;
     box-shadow: 0px 4px 32px rgba(7, 8, 14, 0.05);
-    border-radius: 8px;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: ${(props) => props.color};
     display: flex;
     justify-content: center;
     align-items: center;
+
     svg {
         color: ${props => props.color};
     }
+
     p {
         font-weight: 500;
         font-size: 14px;
         line-height: 24px;
         margin-left: 5px;
     }
+
+    &:hover {
+        cursor: pointer;
+    }
 `;
 
 const Box = styled.div`
     .cep {
-        width: 200px;
+        width: 190px;
     }
     .num {
         width: 110px;
     }
     .cidade {
-        width: 256px;
+        width: 240px;
     }
     .uf {
         width: 57px;
@@ -151,10 +164,9 @@ const Box = styled.div`
 
 const Input = styled.input`
     width: 326px;
-    height: 58px;
+    height: 40px;
     background: #FFFFFF;
-    border: 1px solid #06070D;
-    border-radius: 5px;
+    border: none;
     margin-bottom: 13px;
     padding-left: 15px;
 `;
@@ -162,17 +174,19 @@ const Input = styled.input`
 
 const Button = styled.div`
     width: 100%;
-    height: 46px;
-    border-radius: 5px;
+    height: 40px;
     border: none;  
     padding-top: 11px;
-    margin-bottom: 36px;
     font-weight: 700;
     font-size: 20px;
-    line-height: 23px;
     text-align: center;
     color: #ffffff;
     background-color: #06070D;
+    
+    &:hover {
+        cursor: pointer;
+        background-color: #929292;
+    }
     
 `;
 
@@ -181,8 +195,11 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 159px 25px 192px 25px; 
-    font-family: 'Raleway', sans-serif;
+    margin: 50px 25px 80px 25px; 
+    font-family: "Inter",Helvetica,Arial,sans-serif;
+    color: #161619;
+    
+    
     form {
         display: flex;
         flex-direction: column;
@@ -190,9 +207,31 @@ const Container = styled.div`
         align-items: center;
     }
     input::placeholder {
-        font-size: 20px;
-        line-height: 23px;
+        font-size: 15px;
         font-weight: 400;
         color: #06070D;
+    }
+`;
+
+const NextIcon = styled.div`
+    width: 60px;
+    height: 30px;
+    background-color: #131319;
+    padding-top: 11px;
+    text-align: center;
+    position: absolute;
+    right: 15px;
+    bottom: 40px;
+
+    svg {
+        color: #FFFFFF;
+        stroke-width: 10;
+        width: 20px;
+        height: 20px;        
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: #929292;
     }
 `;

@@ -62,24 +62,28 @@ function ReviewOrder({payment, address}) {
             alert("Não foi possível efetuar a compra");
         }
     }
-
+    
     return (
-        <>
-            <p>review order</p>
-            {books.length > 0 ?
-            books.map((element, index) => {
-                total = total + parseFloat(element.book.price);
-                return <CartElement element={element.book} key={index}/>
-            })
-            :
-            <p>Loading</p>}
-            <div>payment: 
-                {payment.name}
-                {payment.cardNumber}
-                {payment.cvv}
-                {payment.expirationDate}
-            </div>
-            <div>address: 
+        <Container>
+            <OrderSumary>
+                    <p>Livros</p>
+                    {books.length > 0 ?
+                    books.map((element, index) => {
+                        total = total + parseFloat(element.book.price);
+                        return <Product>
+                                    <div>
+                                        <p>Livro {index + 1}</p>
+                                        <p>{element.book.title}</p>
+                                    </div>
+                                    <p>R$ {element.book.price}</p>
+                               </Product> 
+                    })
+                    :
+                    <p>Loading</p>}
+                    <p>total: R$ {total}</p>
+            </OrderSumary>            
+
+            <Shipping>payment: 
                 {address.nome}
                 {address.email}
                 {address.telefone}
@@ -88,11 +92,39 @@ function ReviewOrder({payment, address}) {
                 {address.cep}
                 {address.cidade}
                 {address.uf}
-            </div>
-            <p>total: R$ {total}</p>
+            </Shipping>
+
+            <PaymentDetails>address: 
+                {payment.name}
+                {payment.cardNumber}
+                {payment.cvv}
+                {payment.expirationDate}
+            </PaymentDetails>
+
             <button onClick={placeOrder}>place order</button>
-        </>
+        </Container>
     )
 }
 
 export default ReviewOrder;
+
+const Container = styled.div`
+
+`;
+
+const OrderSumary = styled.div`
+
+`;
+
+const Product = styled.div`
+    display: flex;
+    margin-top: 25px;
+`;
+
+const Shipping = styled.div`
+
+`;
+
+const PaymentDetails = styled.div`
+
+`;
