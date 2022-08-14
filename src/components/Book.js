@@ -37,7 +37,7 @@ function Book({element}) {
                         <Cover src={element.image} />
                     </StyledLink>  
                     <BookInfo>
-                        <Status color={element.isFromExchange ? "#fc930a" : "#29de02"} >{element.isFromExchange ? "USADO" : "NOVO"}</Status>
+                        <Status color={element.conservationState === "used" ? "#fc930a" : "#29de02"} >{element.conservationState === "used" ? "USADO" : "NOVO"}</Status>
                         <p className="title">{element.title}</p>
                         <p className="author">{element.author}</p>
                         <p className="price">R$ {parseFloat(element.price).toFixed(2)} <span>R$ {(parseFloat(element.price) + 10.90).toFixed(2)}</span></p>
