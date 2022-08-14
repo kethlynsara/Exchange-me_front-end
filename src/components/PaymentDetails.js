@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import UserContext from "../contexts/UserContext";
-import { HiOutlineChevronDoubleRight } from "react-icons/hi";
+import { HiOutlineChevronDoubleRight, HiOutlineChevronDoubleLeft } from "react-icons/hi";
 
 function PaymentDetails({payment, setPayment}) {
     const { setConfirmOrderStep } = useContext(UserContext);
@@ -21,13 +21,14 @@ function PaymentDetails({payment, setPayment}) {
                 <Input type="number" placeholder="CVV" value={payment.cvv} required
                     onChange={(e) => setPayment({...payment, cvv: e.target.value})}></Input>
 
-                <NextIcon onClick={() => setConfirmOrderStep(3)}>
-                    <HiOutlineChevronDoubleRight />
-                </NextIcon>
-{/* 
-                <button onClick={() => {
-                    setConfirmOrderStep(3)
-                }}>review order</button> */}
+                <Icons>
+                    <BackIcon onClick={() => setConfirmOrderStep(1)}>
+                        <HiOutlineChevronDoubleLeft />
+                    </BackIcon>
+                    <NextIcon onClick={() => setConfirmOrderStep(3)}>
+                        <HiOutlineChevronDoubleRight />
+                    </NextIcon>
+                </Icons>
             </form>
         </Container>
     )
@@ -45,30 +46,13 @@ const Input = styled.input`
     padding-left: 15px;
 `;
 
-
-const Button = styled.div`
-    width: 100%;
-    height: 46px;
-    border-radius: 5px;
-    border: none;  
-    padding-top: 11px;
-    margin-bottom: 36px;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 23px;
-    text-align: center;
-    color: #ffffff;
-    background-color: #06070D;
-    
-`;
-
 const Container = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 120px 25px 120px 25px; 
-    font-family: 'Raleway', sans-serif;
+    margin: 40px 25px 120px 25px; 
+    font-family: "Inter",Helvetica,Arial,sans-serif;
 
     form {
         display: flex;
@@ -90,9 +74,6 @@ const NextIcon = styled.div`
     background-color: #131319;
     padding-top: 11px;
     text-align: center;
-    position: absolute;
-    right: 15px;
-    bottom: 40px;
 
     svg {
         color: #FFFFFF;
@@ -105,4 +86,33 @@ const NextIcon = styled.div`
         cursor: pointer;
         background-color: #929292;
     }
+`;
+
+const BackIcon = styled.div`
+    width: 60px;
+    height: 30px;
+    background-color: #161619;
+    padding-top: 11px;
+    text-align: center;
+    margin-right: 10px;
+ 
+
+    svg {
+        color: #FFFFFF;
+        stroke-width: 10;
+        width: 20px;
+        height: 20px;        
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: #929292;
+    }
+`;
+
+const Icons = styled.div`
+    display: flex;
+    position: absolute;
+    right: 15px;
+    bottom: 40px;
 `;

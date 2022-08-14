@@ -63,6 +63,7 @@ export default Cart;
 const Container = styled.div`
     padding: 30px;
     margin-top: 100px;
+    margin-bottom: 200px;
     font-family: "Inter",Helvetica,Arial,sans-serif;
     color: #161619;
 
@@ -75,11 +76,11 @@ const Container = styled.div`
 
 const Checkout = styled.div`
     width: 100%;
-    height: 112px;
+    height: 100px;
     position: fixed;
     right: 0;
     left: 0;
-    bottom: 58px; 
+    bottom: 0; 
     display: flex;
     justify-content: space-between;
     align-items: center;

@@ -14,6 +14,7 @@ import ExchangeRequest from "./pages/ExchangeRequest";
 import Book from "./pages/Book";
 import Header from "./components/Header";
 import createGlobalStyle from "./assets/css/global";
+import Success from "./pages/Success";
 
 function App() {
   const [bookStatus, setBookStatus] = useState("");
@@ -36,6 +37,7 @@ function App() {
           <Route path="/exchanges/register" element={<ExchangeRegister />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/success" element={<Success />} />
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>

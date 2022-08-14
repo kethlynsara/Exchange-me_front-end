@@ -13,7 +13,7 @@ function Header() {
             <Menu />  
             <img src={logo} onClick={() => navigate("/")} />
             <div>
-                <BsHandbag className="cart" />
+                <BsHandbag className="cart" onClick={() => navigate("/cart")}/>
                 <AiOutlineUser />                  
             </div>
         </NavBar>

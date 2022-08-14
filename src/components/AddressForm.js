@@ -52,7 +52,6 @@ function AddressForm({inputs, setInputs}) {
     return (
         <Box>
             <Container>
-                <H1>Confirme os dados de entrega</H1>
                 <form>
                     <Input type='text' placeholder='Nome' value={inputs.nome} required
                            onChange={(e) => setInputs({...inputs, nome: e.target.value})}></Input>
@@ -93,7 +92,6 @@ function AddressForm({inputs, setInputs}) {
                     <NextIcon onClick={() => setConfirmOrderStep(2)}>
                         <HiOutlineChevronDoubleRight />
                     </NextIcon>
-                    {/* <Button type='button' onClick={() => setConfirmOrderStep(2)}>Finalizar Pedido</Button> */}
                </form>
             </Container>
         </Box>
