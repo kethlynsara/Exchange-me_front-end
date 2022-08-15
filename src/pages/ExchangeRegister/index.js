@@ -81,43 +81,126 @@ function ExchangeRegister() {
     console.log(element.conservationStateDescription, 'desc')
     
     return (
-        <div>
-            <Input type="text" placeholder="Digite aqui p código isbn" value={isbn} required onChange={(e) => setIsbn(e.target.value)} />
-            <GoSearch onClick={getBookInfo} />
-            {element ? 
-                <>
-                    <p>{element.title}</p>
-                    <p>{element.author}</p>
-                    <p>{element.publisher}</p>
-                    <p>{element.isbn}</p>
-                    <p>{element.description}</p>
-                    <p>{element.image}</p>
-                </>
-            :
-            ""}            
-            <form onSubmit={addBook}>
-                <input type="text" placeholder="Título" required value={element.title} onChange={(e) => setElement({...element, title: e.target.value})} />
-                <input type="text" placeholder="Autor" required value={element.author} onChange={(e) => setElement({...element, author: e.target.value})} />
-                <input type="text" placeholder="Editora" required value={element.publisher} onChange={(e) => setElement({...element, publisher: e.target.value})} />
-                <input type="text" placeholder="ISBN" required value={element.isbn} onChange={(e) => setElement({...element, isbn: e.target.value})} />
-                <input type="url" placeholder="Imagem" required value={element.image} onChange={(e) => setElement({...element, image: e.target.value})} />
-                <textarea type="text" placeholder="Description" required value={element.description} onChange={(e) => setElement({...element, description: e.target.value})} />
-                <select value={element.conservationState} onChange={(e) => setElement({...element, conservationState: e.target.value})} required>
-                    <option>Selecione</option>
-                    <option value="new">Novo</option>
-                    <option value="used">Usado</option>
-                </select>
-                <textarea type="text" placeholder="Estado de conservação" required value={element.conservationStateDescription} onChange={(e) => setElement({...element, conservationStateDescription: e.target.value})} />
-                <input type="text" placeholder="Preço" required value={element.price} onChange={(e) => setElement({...element, price: e.target.value})} />
+        <Container>
+            <Box>
+                <SearchIsbn>
+                    <input type="text" placeholder="Digite aqui p código isbn" value={isbn} required onChange={(e) => setIsbn(e.target.value)} />
+                    <GoSearch onClick={getBookInfo} />
+                </SearchIsbn>
+                {element ? 
+                    <>
+                        <p>{element.title}</p>
+                        <p>{element.author}</p>
+                        <p>{element.publisher}</p>
+                        <p>{element.isbn}</p>
+                        <p>{element.description}</p>
+                        <p>{element.image}</p>
+                    </>
+                :
+                ""}            
+                <form onSubmit={addBook}>
+                    <input type="text" placeholder="Título" required value={element.title} onChange={(e) => setElement({...element, title: e.target.value})} />
+                    <input type="text" placeholder="Autor" required value={element.author} onChange={(e) => setElement({...element, author: e.target.value})} />
+                    <input type="text" placeholder="Editora" required value={element.publisher} onChange={(e) => setElement({...element, publisher: e.target.value})} />
+                    <input type="text" placeholder="ISBN" required value={element.isbn} onChange={(e) => setElement({...element, isbn: e.target.value})} />
+                    <input type="url" placeholder="Imagem" required value={element.image} onChange={(e) => setElement({...element, image: e.target.value})} />
+                    <textarea type="text" placeholder="Description" required value={element.description} onChange={(e) => setElement({...element, description: e.target.value})} />
+                    <select value={element.conservationState} onChange={(e) => setElement({...element, conservationState: e.target.value})} required>
+                        <option>Selecione</option>
+                        <option value="new">Novo</option>
+                        <option value="used">Usado</option>
+                    </select>
+                    <textarea type="text" placeholder="Estado de conservação" required value={element.conservationStateDescription} onChange={(e) => setElement({...element, conservationStateDescription: e.target.value})} />
+                    <input type="text" placeholder="Preço" required value={element.price} onChange={(e) => setElement({...element, price: e.target.value})} />
 
-                <button type="submit">Add book</button>
-            </form>
-        </div>
+                    <button type="submit">Registrar livro</button>
+                </form>
+            </Box>
+        </Container>
     )
 }
 
 export default ExchangeRegister;
 
-const Input = styled.input`
+const Container = styled.div`
+    margin-top: 120px;
+    padding: 30px;
+`;
 
+const Box = styled.div`
+    padding: 30px;
+    background-color: #F3F3F3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    input {
+        width: 326px;
+        height: 40px;
+        background: #FFFFFF;
+        border: none;
+        margin-bottom: 13px;
+        padding-left: 15px;
+    }
+
+    textarea {
+        width: 326px;
+        height: 40px;
+        background: #FFFFFF;
+        border: none;
+        margin-bottom: 13px;
+        padding-left: 15px;
+        padding-top: 15px;
+    }
+
+    select {
+        margin-bottom: 15px;
+        border: none;
+        background-color: #929292;
+        color: #FFFFFF;
+        border-radius: 2px;
+        height: 25px;
+
+        :hover {
+            cursor: pointer;
+            background-color: #161619;
+        }
+    }
+
+    button {
+        width: 100%;
+        height: 40px;
+        border: none;
+        background-color: #929292;
+        color: #FFFFFF;
+        font-size: 16px;
+        font-weight: 500;
+
+        :hover {
+            cursor: pointer;
+            background-color: #161619;
+        }
+    }
+`;
+
+const SearchIsbn = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    
+    input {
+        width: 200px;
+        height: 40px;
+        background: #FFFFFF;
+        border: none;
+        margin-bottom: 13px;
+        padding-left: 15px;
+    }
+
+    svg {
+        width: 20px;
+        height: 20px;
+        margin-top: 10px;
+        cursor: pointer;
+    }
 `;

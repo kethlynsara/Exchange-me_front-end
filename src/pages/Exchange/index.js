@@ -113,7 +113,7 @@ function Exchange() {
                 <Books>
                     {books.length > 0 ? books.map((element, index) =>  <Book element={element} key={index}/>)
                     :
-                    <p>Não há livros disponíveis</p>}
+                    <P>Não há livros disponíveis</P>}
                 </Books>
             </ExchangeList>
 
@@ -125,7 +125,7 @@ function Exchange() {
                             return <ExchangeRequestBook element={element.orderBook.book} key={index} exchangeBookId={element.id} />
                         }})
                     :
-                    <p>Não há solicitações disponíveis</p>}
+                    <P>Não há solicitações disponíveis</P>}
                     {checkAvailableBooks()}
                 </Books>
             </ExchangeRequestList>
