@@ -11,7 +11,13 @@ function Book() {
 
     const userData = localStorage.getItem("userInfo");
     const userInfo = JSON.parse(userData);
-    const { token, userId } = userInfo;
+    // const { token, userId } = userInfo;
+    let token = "";
+    let userId;
+    if (userInfo !== null) {
+        token = userInfo.token;
+        userId = userInfo.userId;
+    }
     const config = {
       headers: {
         Authorization: `Bearer ${token}`
@@ -50,7 +56,9 @@ function Book() {
                 <p className="title">{book.title}</p>
                 <Status color={book.conservationState === "used" ? "#fc930a" : "#29de02"} >{book.conservationState === "used" ? "USADO" : "NOVO"}</Status>
                 <p className="price">R$ {book.price}</p>
-                {userId !== book.userId ? <button onClick={() => addBookToCart(book)}>Adicionar ao carrinho</button> : ""}
+                {userId !== book.userId ? <button onClick={() => {
+                    if (token.length === 0) navigate("/signin"); else addBookToCart(book); 
+                }}>Adicionar ao carrinho</button> : ""}
             </BookInfo>
             <BookDetails>
                 <Titles >

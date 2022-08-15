@@ -22,6 +22,7 @@ function SignIn() {
             navigate("/");
         } catch (error) {
             console.log(e.response.data.error)
+            alert("Dados inválidos! Tente novamente.");
         }
     }
 

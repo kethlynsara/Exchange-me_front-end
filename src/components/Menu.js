@@ -84,7 +84,12 @@ export default function CustomizedMenus() {
     setAnchorEl(null);
   };
   const navigate = useNavigate();
-
+  const userData = localStorage.getItem("userInfo");
+  const userInfo = JSON.parse(userData);
+  let token = "";
+  if (userInfo !== null) {
+      token = userInfo.token;
+  }
   return (
     <div>
       <ThemeProvider theme={theme}>
@@ -111,7 +116,7 @@ export default function CustomizedMenus() {
         <MenuItem
           onClick={() => {
             setAnchorEl(null);
-            navigate("/exchanges");
+            if (token === "") navigate("/signin"); else navigate("/exchanges"); 
           }}
           disableRipple
         >
@@ -135,7 +140,12 @@ export default function CustomizedMenus() {
           <HelpIcon />
           Ajuda
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem onClick={() => {
+          handleClose();
+          console.log('tokenn', token)
+          localStorage.removeItem("userInfo");
+          navigate("/signin");
+          }} disableRipple>
           <LogoutIcon />
           Sair
         </MenuItem>

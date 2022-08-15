@@ -8,7 +8,13 @@ function Book({element}) {
     console.log('el', element)
     const userData = localStorage.getItem("userInfo");
     const userInfo = JSON.parse(userData);
-    const { token, userId } = userInfo;
+    // const { token, userId } = userInfo;
+    let token = "";
+    let userId;
+    if (userInfo !== null) {
+        token = userInfo.token;
+        userId = userInfo.userId;
+    }
     const config = {
       headers: {
         Authorization: `Bearer ${token}`
@@ -37,18 +43,23 @@ function Book({element}) {
                         <Cover src={element.image} />
                     </StyledLink>  
                     <BookInfo>
-                        <Status color={element.conservationState === "used" ? "#fc930a" : "#29de02"} >{element.conservationState === "used" ? "USADO" : "NOVO"}</Status>
+                        <Status color={element.conservationState === "used" ? "#7e0b7d" : "#29de02"} >{element.conservationState === "used" ? "USADO" : "NOVO"}</Status>
                         <p className="title">{element.title}</p>
                         <p className="author">{element.author}</p>
                         <p className="price">R$ {parseFloat(element.price).toFixed(2)} <span>R$ {(parseFloat(element.price) + 10.90).toFixed(2)}</span></p>
                         <Buttons>
                             <div className="cart">
-                                {userId !== element.userId ? <BsHandbag onClick={() => addBookToCart(element)} /> : ""}
+                                {userId !== element.userId ? <BsHandbag onClick={() => {
+                                    if (token.length === 0) navigate("/signin"); else addBookToCart(element); 
+                                }}/> : ""}
                             </div>
                             <div className="heart">
                                 <IoIosHeartEmpty />
                             </div>
                         </Buttons>
+                        <Sale>
+                            <p>SALE</p>
+                        </Sale>
                     </BookInfo>
                 </BookElement>              
         </Container>
@@ -68,10 +79,11 @@ const Cover = styled.img`
     width: 115px;
     height: 165px;
     margin: auto;
+    margin-top: 15px;
 `;
 
 const BookElement = styled.div`
-    height: 370px;
+    height: 380px;
     width: 375px;
     border: 1px;
     border-style: solid;
@@ -97,11 +109,13 @@ const Status = styled.p`
     margin-left: 15px;
     font-size: 11px;
     color: ${(props) => props.color};
+    font-weight: 500;
 `;
 
 const BookInfo = styled.div`
     width: 375px;
     height: 170px;
+    position: relative;
 
     .title {
         margin-bottom: 28px;
@@ -120,14 +134,16 @@ const BookInfo = styled.div`
     .price {
         margin-bottom: 15px;
         margin-left: 15px;
-        font-weight: 500;
+        font-weight: 700;
         font-size: 17px;
+        color: #FF914C;
 
         span {
             text-decoration: line-through;
-            color: #fd724c;
             font-size: 11px;
             margin-left: 5px;
+            color: #161619;
+            font-weight: 400;
         }
     }
 `;
@@ -157,4 +173,22 @@ const Buttons = styled.div`
 
 const StyledLink = styled(Link)`
     text-decoration: none;
+`;
+
+const Sale = styled.div`
+    width: 50px;
+    height: 16px;
+    color: #FFFFFF;
+    background-color: #FF914C;
+    padding-top: 5px;
+    border-radius: 25px;
+    position: absolute;
+    right: 25px;
+    top: -185px;
+
+    p {
+        font-size: 10px;
+        text-align: center;
+        font-weight: 500;
+    }
 `;

@@ -3,6 +3,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from "axios";
 import styled from "styled-components";
 
+import logo from "../../assets/img/logo2.svg";
+
 function SignUp() {
     const [data, setData] = useState({
         name: "",
@@ -63,7 +65,9 @@ const Box = styled.div`
         margin-top: 15px;
         margin-bottom: 20px;
         font-size: 26px;
-        font-weight: 600;
+        font-weight: 700;
+        color: #FF914C;
+        opacity: 0.8;
     }
 
     input {
@@ -83,17 +87,20 @@ const Box = styled.div`
         justify-content: center;
 
         button {
-            background-color: #161619;
+            background-color: #FF914C;
+            opacity: 0.6;
             border: none;
             width: 100%;
             height: 40px;
             color: #FFFFFF;
             margin-bottom: 20px;
             margin-top: 15px;
+            font-weight: 600;
+            font-size: 17px;
 
             :hover {
                 cursor: pointer;
-                background-color: #000000;
+                opacity: 1;
             }
         }
     }
