@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import styled from "styled-components";
 
 function ExchangeRequest() {
     const { exchangeId } = useParams();
@@ -44,6 +45,8 @@ function ExchangeRequest() {
                     id: exchanges.orderBook.book.id,
                     available: false
                 }, config);
+
+                alert("Operação realizada com sucesso!");
             } catch (error) {
                 console.log(error.response);
             }
@@ -62,17 +65,167 @@ function ExchangeRequest() {
     } else {
         if (exchanges.orderBook.book.available === true) {
                 return (
-                    <>
-                        <h1>vc recebeu uma solicitação de troca pelo livro... </h1>
-                        <p>Envie o livro para o endereço indicado, digite o código de rastreio disponibilizado pelos correios e receba seu cashback</p>
-                        <input type="text" placeholder="Digite o código de rastreio" required value={code} onChange={(e) => setCode(e.target.value)}/>
-                        <button disabled={disable} onClick={updateCashback}>get cashback</button>
-                    </>
+                    <Container>
+                        <BookCover>
+                            <Cover src={exchanges.orderBook.book.image} />
+                        </BookCover>
+                        <BookInfo>
+                            <p className="title">{exchanges.orderBook.book.title}</p>
+                            <Status color={exchanges.orderBook.book.conservationState === "used" ? "#fc930a" : "#29de02"} >{exchanges.orderBook.book.conservationState === "used" ? "USADO" : "NOVO"}</Status>
+                            <p className="price">R$ {exchanges.orderBook.book.price}</p>
+                        </BookInfo>
+                        <Info>
+                            <h1>Você recebeu uma solicitação de troca pelo livro "<span>{exchanges.orderBook.book.title}</span>". </h1>
+                            <Address>
+                                <h2>Endereço de entrega:</h2>
+                                <p>{exchanges.orderBook.order.address.street}, {exchanges.orderBook.order.address.number} - {exchanges.orderBook.order.address.cep}</p>
+                                <p>{exchanges.orderBook.order.address.district} - {exchanges.orderBook.order.address.uf}</p>
+                            </Address>
+                            <ShippingDetails>
+                                <p className="info1">Envie o livro para o endereço indicado, digite o código de ratreio fornecido pelos correios e receba seu cashback</p>
+                                <div>
+                                    <input type="text" placeholder="Código de rastreio" required value={code} onChange={(e) => setCode(e.target.value)}/>
+                                    <button disabled={disable} onClick={updateCashback}>Confirmar</button>
+                                </div>
+                                <p className="info2">Mais informações à respeito da entrega foram enviadas ao seu email de registro</p>
+                            </ShippingDetails>
+                        </Info>                        
+                    </Container>
                 )
         } else {
-                return <p>troca já realizada</p>
+                return (
+                    <Container>
+                        <P>Troca já realizada!</P>
+                    </Container>
+                )
         }
     }
 }
 
 export default ExchangeRequest;
+
+const Container = styled.div`
+    margin-top: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    font-family: "Inter",Helvetica,Arial,sans-serif;
+    color: #161619;
+`;
+
+const BookCover = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0 50px 0;
+    border: 1px;
+    border-style: solid;
+    border-color: #F1F1F1;
+`;
+
+const Cover = styled.img`
+    width: 250px;
+`;
+
+const BookInfo = styled.div`
+    width: 100%;
+    margin-top: 50px;
+
+    .title {
+        font-size: 30px;
+        font-weight: 500;
+    }
+
+    .price {
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    button {
+        width: 100%;
+        height: 50px;
+        background-color: #161619;
+        border: none;
+        color: #FFFFFF;
+        text-align: center;
+        margin-top: 20px;
+        font-size: 15px;
+
+        :hover {
+            cursor: pointer;
+            background-color: #000000;
+        }
+    }
+`;
+
+const Info = styled.div`
+    width: 100%;
+    border: 1px;
+    border-style: solid;
+    border-color: #F1F1F1;
+    margin-top: 20px;
+
+    h1 {
+        margin: 15px;
+
+        span {
+            font-weight: 500;
+        }
+    }
+ `;
+
+const Status = styled.p`
+    margin-top: 15px;
+    margin-bottom: 20px;
+    font-size: 15px;
+    color: ${(props) => props.color};
+`;
+
+const Address = styled.div`
+    margin: 15px;
+
+    h2 {
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+
+    /* p {
+        margin-left: 10px;
+    } */
+`;
+
+const ShippingDetails = styled.div`
+    margin: 15px;
+
+    .info1 {
+        margin-bottom: 15px;
+    }
+
+    input {
+        height: 20px;
+    }
+
+    button {
+        border: none;
+        border-radius: 2px;
+        background-color: #161619;
+        height: 25px;
+        color: #FFFFFF;
+    }
+
+    .info2 {
+        margin-top: 15px;
+    }
+
+    div {
+        display: flex;
+        justify-content: space-around;
+    }
+`;
+
+const P = styled.p`
+    font-weight: 500;
+    opacity: 0.5;
+`;

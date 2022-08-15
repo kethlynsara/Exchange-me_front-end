@@ -61,6 +61,7 @@ const Container = styled.div`
     font-family: "Inter",Helvetica,Arial,sans-serif;
     color: #161619;
     display: inline-block;
+    margin-bottom: 10px;
 `;
 
 const Cover = styled.img`
