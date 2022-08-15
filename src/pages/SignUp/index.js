@@ -3,8 +3,6 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from "axios";
 import styled from "styled-components";
 
-import logo from "../../assets/img/logo2.svg";
-
 function SignUp() {
     const [data, setData] = useState({
         name: "",
@@ -54,6 +52,10 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media (min-width: 920px) {
+        padding: 10%;
+    }
 `;
 
 const Box = styled.div`
@@ -67,7 +69,10 @@ const Box = styled.div`
         font-size: 26px;
         font-weight: 700;
         color: #FF914C;
-        opacity: 0.8;
+
+        @media (min-width: 920px) {
+            margin-top: -40px;
+        }
     }
 
     input {
@@ -88,7 +93,6 @@ const Box = styled.div`
 
         button {
             background-color: #FF914C;
-            opacity: 0.6;
             border: none;
             width: 100%;
             height: 40px;
@@ -100,9 +104,20 @@ const Box = styled.div`
 
             :hover {
                 cursor: pointer;
-                opacity: 1;
             }
         }
+
+        @media (min-width: 438px) {
+            padding: 10%;
+        }
+
+        @media (min-width: 920px) {
+            padding: 20%;
+        }
+    }
+
+    @media (min-width: 438px) {
+        width: 90%;
     }
 `;
 

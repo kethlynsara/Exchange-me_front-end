@@ -52,6 +52,18 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    /* @media (min-width: 500px) {
+        justify-content: center;
+        padding: 0;
+    } */
+
+
+    @media (min-width: 1172px) {
+        padding: 10%;
+        /* padding: 15px 70px;
+        height: 700px; */
+    }
 `;
 
 const Box = styled.div`
@@ -61,9 +73,14 @@ const Box = styled.div`
 
     h1 {
         margin-top: 15px;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
         font-size: 26px;
-        font-weight: 600;
+        font-weight: 700;
+        color: #FF914C;
+
+        @media (min-width: 1172px) {
+            margin-top: -40px;
+        }
     }
 
     input {
@@ -83,7 +100,7 @@ const Box = styled.div`
         justify-content: center;
 
         button {
-            background-color: #161619;
+            background-color: #FF914C;
             border: none;
             width: 100%;
             height: 40px;
@@ -93,9 +110,21 @@ const Box = styled.div`
 
             :hover {
                 cursor: pointer;
-                background-color: #000000;
             }
         }
+
+        @media (min-width: 438px) {
+            padding: 10%;
+        }
+
+        @media (min-width: 1172px) {
+            padding: 20%;
+        }
+
+    }
+
+    @media (min-width: 438px) {
+        width: 90%;
     }
 `;
 

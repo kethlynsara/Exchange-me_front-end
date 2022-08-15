@@ -71,6 +71,20 @@ const Container = styled.div`
     
     overflow-x: hidden;
     overflow-y: hidden;
+
+    @media (min-width: 498px) {
+        padding: 10%;
+    }
+
+    @media (min-width: 498px) {
+        padding: 15%;
+        margin-top: 80px;
+    }
+
+    @media (min-width: 952px) {
+        padding: 20%;
+        margin-top: 0;
+    }
 `;
 
 const Checkout = styled.div`
@@ -91,15 +105,16 @@ const Checkout = styled.div`
         margin-right: 50px;
         border: none;
         border-radius: 22px;
-        background-color: #161619;
+        background-color: #FF914C;
         color: #FFFFFF;
+        font-weight: 600;
+        font-size: 18px;
         width: 140px;
         height: 45px;
         text-align: center;
 
         :hover {
             cursor: pointer;
-            background-color: #000000;
         }
     }
 `;

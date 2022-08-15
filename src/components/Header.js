@@ -130,9 +130,9 @@ const Cart = styled.div`
 const Logo = styled.div`   
     display: flex;
     justify-content: space-between;
-    width: 70px;
-    height: 30px;
-    margin-right: 60px;
+    width: 80px;
+    height: 35px;
+    margin-right: 67px;
     margin-top: 3px;
 
     :hover {
