@@ -51,7 +51,7 @@ function Home() {
                     <ListHeader>
                         <h1>Novos</h1>
                         <div>
-                            <ListAll to="/"> Todos</ListAll>
+                            <ListAll to="/books" onClick={() => setBookStatus("newBooks")}> Todos</ListAll>
                             <IoMdArrowDropright />
                         </div>
                     </ListHeader>
@@ -68,7 +68,7 @@ function Home() {
                     <ListHeader>
                         <h1>Recentes</h1>
                         <div>
-                            <ListAll to="/"> Todos</ListAll>
+                            <ListAll to="/" to="/books" onClick={() => setBookStatus("newestBooks")}> Todos</ListAll>
                             <IoMdArrowDropright />
                         </div>
                     </ListHeader>
@@ -86,7 +86,7 @@ function Home() {
                     <ListHeader>
                         <h1>Usados</h1>
                         <div>
-                            <ListAll to="/"> Todos</ListAll>
+                            <ListAll to="/books" to="/books" onClick={() => setBookStatus("usedBooks")}> Todos</ListAll>
                             <IoMdArrowDropright />
                         </div>
                     </ListHeader>                <Scroll>
