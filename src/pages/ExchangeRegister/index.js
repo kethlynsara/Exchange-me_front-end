@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import { GoSearch } from "react-icons/go";
 
 function ExchangeRegister() {
@@ -16,6 +17,7 @@ function ExchangeRegister() {
         conservationState: "",
         price: ""
     });
+    const navigate = useNavigate();
 
     async function getBookInfo(e) {
         e.preventDefault();
@@ -24,7 +26,8 @@ function ExchangeRegister() {
             const { data } = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&key=${process.env.REACT_APP_GOOGLE_API_KEY}`);
     
             if (data.items.length !== 1) {
-                console.log("book not found")
+                alert("Livro não encontrado!");
+
             } else {
                 setElement({
                     title: data.items[0].volumeInfo.title ? data.items[0].volumeInfo.title : "",
@@ -70,16 +73,13 @@ function ExchangeRegister() {
             }
             console.log("hey")
             await axios.post(`${process.env.REACT_APP_API_URL}/books/register`, book, config);
+            navigate("/exchanges");
         }catch(error) {
             console.log(error.response);
         }
         
     }
 
-    console.log(element)
-    console.log(element.conservationState, 'cons')
-    console.log(element.conservationStateDescription, 'desc')
-    
     return (
         <Container>
             <Box>
@@ -87,17 +87,7 @@ function ExchangeRegister() {
                     <input type="text" placeholder="Digite aqui p código isbn" value={isbn} required onChange={(e) => setIsbn(e.target.value)} />
                     <GoSearch onClick={getBookInfo} />
                 </SearchIsbn>
-                {element ? 
-                    <>
-                        <p>{element.title}</p>
-                        <p>{element.author}</p>
-                        <p>{element.publisher}</p>
-                        <p>{element.isbn}</p>
-                        <p>{element.description}</p>
-                        <p>{element.image}</p>
-                    </>
-                :
-                ""}            
+
                 <form onSubmit={addBook}>
                     <input type="text" placeholder="Título" required value={element.title} onChange={(e) => setElement({...element, title: e.target.value})} />
                     <input type="text" placeholder="Autor" required value={element.author} onChange={(e) => setElement({...element, author: e.target.value})} />
@@ -125,6 +115,26 @@ export default ExchangeRegister;
 const Container = styled.div`
     margin-top: 120px;
     padding: 30px;
+    
+    @media (min-width: 504px) {
+        padding: 10%;
+    }
+
+    @media (min-width: 800px) {
+        padding: 15%;
+    }
+
+    @media (min-width: 1000px) {
+        padding: 20%;
+    }
+
+    @media (min-width: 1168px) {
+        padding: 23%;
+    }
+
+    @media (min-width: 1280px) {
+        padding: 25%;
+    }
 `;
 
 const Box = styled.div`
@@ -133,6 +143,11 @@ const Box = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
 
     input {
         width: 326px;
@@ -154,6 +169,7 @@ const Box = styled.div`
     }
 
     select {
+        width: 80px;
         margin-bottom: 15px;
         border: none;
         background-color: #929292;
@@ -163,23 +179,28 @@ const Box = styled.div`
 
         :hover {
             cursor: pointer;
-            background-color: #161619;
+            background-color: #FF914C;
         }
     }
 
     button {
-        width: 100%;
+        width: 60%;
         height: 40px;
         border: none;
-        background-color: #929292;
+        border-radius: 2px;
+        background-color: #FF914C;
         color: #FFFFFF;
         font-size: 16px;
-        font-weight: 500;
+        font-weight: 600;
+        margin: 0 auto;
 
         :hover {
             cursor: pointer;
-            background-color: #161619;
         }
+    }
+
+    @media (min-width: 504px) {
+        padding: 10%;
     }
 `;
 

@@ -24,7 +24,7 @@ function Home() {
                 console.log('data', data)
                 setBooks({...books, new: data.new, used: data.used, all: data.all});
             } catch (e) {
-                console.log(e.response.data.error);
+                console.log(e.response);
             }
         }
         getBooks();

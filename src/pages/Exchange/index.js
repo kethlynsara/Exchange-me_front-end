@@ -173,12 +173,12 @@ const Button = styled.button`
     border: none;
     border-radius: 2px;
     color: white;
+    font-weight: 600;
     margin-bottom: 20px;
-    background-color: #161619;
+    background-color: #FF914C;
     
     &:hover {
         cursor: pointer;
-        background-color: #000000;
     }
 `;
 
@@ -227,12 +227,12 @@ const Cashback = styled.div`
         border: none;
         border-radius: 2px;
         margin: 0 40px 0 15px;
-        background-color: #161619;
+        background-color: #FF914C;
         color: #FFFFFF;
+        font-weight: 600;
     
         &:hover {
             cursor: pointer;
-            background-color: #000000;
         }
     }
 
@@ -243,6 +243,9 @@ const Cashback = styled.div`
 `;
 
 const Withdraw = styled.form`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     input {        
         width: 326px;
         height: 40px;
@@ -260,14 +263,13 @@ const Withdraw = styled.form`
     button {
         border: none;
         border-radius: 2px;
-        background-color: #161619;
+        background-color: #FF914C;
         color: #FFFFFF;
         height: 30px;
         width: 120px;
-
+        font-weight: 600;
         :hover {
             cursor: pointer;
-            background-color: #000000;
         }
     }
 `;

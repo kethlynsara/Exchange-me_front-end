@@ -71,7 +71,7 @@ const Container = styled.div`
 const NextIcon = styled.div`
     width: 60px;
     height: 30px;
-    background-color: #131319;
+    background-color: #FF914C;
     padding-top: 11px;
     text-align: center;
 
@@ -84,14 +84,13 @@ const NextIcon = styled.div`
 
     &:hover {
         cursor: pointer;
-        background-color: #929292;
     }
 `;
 
 const BackIcon = styled.div`
     width: 60px;
     height: 30px;
-    background-color: #161619;
+    background-color: #FF914C;
     padding-top: 11px;
     text-align: center;
     margin-right: 10px;
@@ -106,7 +105,6 @@ const BackIcon = styled.div`
 
     &:hover {
         cursor: pointer;
-        background-color: #929292;
     }
 `;
 

@@ -45,15 +45,15 @@ function Checkout() {
                 <h1>Checkout</h1>
                 <Steps>
                     <Shipping>
-                        <FaRegCheckCircle color={confirmOrderStep === 1 ? "green" : "#161619"} opacity={confirmOrderStep === 1 ? 1 : 0.7}/>
+                        <FaRegCheckCircle color={confirmOrderStep === 1 ? "#FF914C" : "#161619"} opacity={confirmOrderStep === 1 ? 1 : 0.7}/>
                         <P opacity={confirmOrderStep === 1 ? 1 : 0.7}>Entrega</P>
                     </Shipping>
                     <Payment>
-                        <FaRegCheckCircle color={confirmOrderStep === 2 ? "green" : "#161619"} opacity={confirmOrderStep === 2 ? 1 : 0.7} />
+                        <FaRegCheckCircle color={confirmOrderStep === 2 ? "#FF914C" : "#161619"} opacity={confirmOrderStep === 2 ? 1 : 0.7} />
                         <P opacity={confirmOrderStep === 2 ? 1 : 0.7} >Pagamento</P>
                     </Payment>
                     <Review>
-                        <FaRegCheckCircle color={confirmOrderStep === 3 ? "green" : "#161619"} opacity={confirmOrderStep === 3 ? 1 : 0.7} />
+                        <FaRegCheckCircle color={confirmOrderStep === 3 ? "#FF914C" : "#161619"} opacity={confirmOrderStep === 3 ? 1 : 0.7} />
                         <P opacity={confirmOrderStep === 3 ? 1 : 0.7}>Confirmação</P>
                     </Review>
                 </Steps>
@@ -74,7 +74,20 @@ const Container = styled.div`
     font-family: "Inter",Helvetica,Arial,sans-serif;
     color: #161619;
 
-    `;
+    @media (min-width: 560px) {
+        padding: 10%;
+    }
+
+    @media (min-width: 780px) {
+        padding: 15%;
+        margin-top: 0;
+    }
+
+    @media (min-width: 1020px) {
+        padding: 20%;
+        margin-top: 0
+    }
+`;
 
 const Box = styled.div`
     width: 100%;
@@ -83,9 +96,10 @@ const Box = styled.div`
     text-align: center;
     
     h1 {
-        font-size: 19px;
-        font-weight: 600;
+        font-size: 23px;
+        font-weight: 700;
         margin-top: 30px;
+        color: #FF914C;
     }
 `;
 
@@ -94,9 +108,34 @@ const Steps = styled.div`
     justify-content: space-around;
     font-size: 13px;
     font-weight: 500;
-    margin-top: 25px;
+    margin-top: 35px;
     margin-left: 15px;
     margin-right: 15px;
+
+    @media (min-width: 570px) {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    @media (min-width: 570px) {
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+
+    @media (min-width: 810px) {
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+
+    @media (min-width: 970px) {
+        margin-left: 22%;
+        margin-right: 22%;
+    }
+
+    @media (min-width: 1186px) {
+        margin-left: 24%;
+        margin-right: 24%;
+    }
 `;
 
 const Shipping = styled.div`
@@ -128,6 +167,7 @@ const Review = styled.div`
 
 const P = styled.p`
     margin-left: 5px;
+    font-weight: 600;
     opacity: ${(props) => props.opacity};
 `;
 

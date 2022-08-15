@@ -12,7 +12,6 @@ function SignIn() {
 
     async function login(e) {
         e.preventDefault();
-        console.log("data", data)
 
         try {
             const {data: userInfo} = await axios.post(`${process.env.REACT_APP_API_URL}/signin`, data);
@@ -21,7 +20,7 @@ function SignIn() {
             localStorage.setItem("userInfo", serializedData);
             navigate("/");
         } catch (error) {
-            console.log(e.response.data.error)
+            console.log(e.response)
             alert("Dados inválidos! Tente novamente.");
         }
     }

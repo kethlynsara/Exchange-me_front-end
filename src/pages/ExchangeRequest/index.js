@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 function ExchangeRequest() {
@@ -8,6 +8,7 @@ function ExchangeRequest() {
     const [exchanges, setExchanges] = useState({})
     const [code, setCode] = useState("");
     const [disable, setDisable] = useState(false);
+    const navigate = useNavigate();
 
     const userData = localStorage.getItem("userInfo");
     const userInfo = JSON.parse(userData);
@@ -47,6 +48,7 @@ function ExchangeRequest() {
                 }, config);
 
                 alert("Operação realizada com sucesso!");
+                navigate("/exchanges");
             } catch (error) {
                 console.log(error.response);
             }

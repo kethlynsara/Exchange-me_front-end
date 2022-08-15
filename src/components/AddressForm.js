@@ -109,14 +109,14 @@ const H1 = styled.h1`
 `;
 
 const Frete = styled.div`
-    width: 154px;
+    width: 120px;
     height: 40px;
     font-style: normal;
     color: #06070D;
     margin: 40px 0 47px 0;
     background-color: #FFFFFF;
     box-shadow: 0px 4px 32px rgba(7, 8, 14, 0.05);
-    border-radius: 3px;
+    border-radius: 50px;
     border-style: solid;
     border-width: 1px;
     border-color: ${(props) => props.color};
@@ -214,12 +214,13 @@ const Container = styled.div`
 const NextIcon = styled.div`
     width: 60px;
     height: 30px;
-    background-color: #131319;
+    background-color: #FF914C;
     padding-top: 11px;
     text-align: center;
     position: absolute;
     right: 15px;
     bottom: 40px;
+    border-radius: 2px;
 
     svg {
         color: #FFFFFF;
@@ -230,6 +231,5 @@ const NextIcon = styled.div`
 
     &:hover {
         cursor: pointer;
-        background-color: #929292;
     }
 `;

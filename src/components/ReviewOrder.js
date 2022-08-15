@@ -89,8 +89,10 @@ function ReviewOrder({payment, address}) {
 
             <Shipping>
                     <Title>Entrega</Title>
-                    <span><p>{address.nome}</p></span>
-                    <p>{address.rua}, {address.num}, {address.cidade}, {address.uf}</p>
+                    <div>
+                        <span><p>{address.nome}</p></span>
+                        <p>{address.rua}, {address.num}, {address.cidade}, {address.uf}</p>
+                    </div>
 
             </Shipping>
 
@@ -116,10 +118,14 @@ const Container = styled.div`
     color: #161619;
     padding: 10px;
     padding-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 `;
 
 const OrderSumary = styled.div`
-
+    /* display: flex;
+    flex-direction: column; */
 `;
 
 const Title = styled.p`
@@ -133,6 +139,12 @@ const Product = styled.div`
     display: flex;
     justify-content: space-between;
     margin-top: 25px;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
 `;
 
 const Price = styled.div`
@@ -161,6 +173,12 @@ const Total = styled.div`
 `;
 
 const Shipping = styled.div`
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
     span {
         p {
             margin-bottom: 10px;
@@ -170,6 +188,10 @@ const Shipping = styled.div`
 
 const PaymentDetails = styled.div`
     div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        
         p {
             margin-bottom: 10px;
             
@@ -182,17 +204,17 @@ const PaymentDetails = styled.div`
 
 const Button = styled.button`
     border: none;
-    background-color: #161619;
+    background-color: #FF914C;
     color: #FFFFFF;
     width: 150px;
     height: 40px;
     border-radius: 2px;
-    margin-top: 20px;
+    font-weight: 600;
     font-size: 16px;
-    margin-left: 100px;
+    margin: 0 auto;
+    margin-top: 20px;
 
     :hover {
         cursor: pointer;
-        background-color: #000000;
     }
 `;
