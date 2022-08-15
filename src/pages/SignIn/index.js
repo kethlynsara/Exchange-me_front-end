@@ -4,7 +4,6 @@ import axios from "axios";
 import styled from "styled-components";
 
 function SignIn() {
-    const URL = "http://localhost:5000";
     const [data, setData] = useState({
         email: "",
         password: "",
@@ -16,7 +15,7 @@ function SignIn() {
         console.log("data", data)
 
         try {
-            const {data: userInfo} = await axios.post(`${URL}/signin`, data);
+            const {data: userInfo} = await axios.post(`${process.env.REACT_APP_API_URL}/signin`, data);
             console.log(userInfo);
             const serializedData = JSON.stringify(userInfo);
             localStorage.setItem("userInfo", serializedData);

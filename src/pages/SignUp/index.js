@@ -4,7 +4,6 @@ import axios from "axios";
 import styled from "styled-components";
 
 function SignUp() {
-    const URL = "http://localhost:5000";
     const [data, setData] = useState({
         name: "",
         email: "",
@@ -18,7 +17,7 @@ function SignUp() {
         console.log("data", data)
 
         try {
-            await axios.post(`${URL}/signup`, data);
+            await axios.post(`${process.env.REACT_APP_API_URL}/signup`, data);
             navigate("/signin");
         } catch (error) {
             console.log(e.response.data.error)

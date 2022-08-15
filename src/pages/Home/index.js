@@ -11,7 +11,6 @@ import UserContext from "../../contexts/UserContext";
 function Home() {
     const { setBookStatus } = useContext(UserContext);
     const navigate = useNavigate();
-    const URL = "http://localhost:5000";
     const [books, setBooks] = useState({
         new: [],
         used: [],
@@ -21,7 +20,7 @@ function Home() {
     useEffect(() => {
         async function getBooks() {
             try {
-                const { data } = await axios.get(`${URL}/books`);
+                const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/books`);
                 console.log('data', data)
                 setBooks({...books, new: data.new, used: data.used, all: data.all});
             } catch (e) {

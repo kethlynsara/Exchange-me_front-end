@@ -32,7 +32,6 @@ function Cart() {
         getUserCart();
     }, []);
 
-    //console.log(total, books)
     return (
         <Container>
             {books.length > 0 ?

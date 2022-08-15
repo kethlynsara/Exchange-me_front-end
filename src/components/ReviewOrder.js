@@ -3,9 +3,6 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-import CartElement from "./CartElement";
-
-
 function ReviewOrder({payment, address}) {
     const [books, setBooks] = useState([]);
     const navigate = useNavigate();

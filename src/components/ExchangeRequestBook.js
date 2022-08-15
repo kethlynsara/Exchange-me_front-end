@@ -7,16 +7,6 @@ function ExchangeRequestBook({element, exchangeBookId}) {
 
 
     return (
-        // <Container>
-        //     <StyledLink to={"/exchanges/requests/" + exchangeBookId}>
-        //         <Cover src={element.image} />
-        //         <Info>
-        //             <div>{element.title}</div>
-        //             <div>{element.author}</div>
-        //         </Info>  
-        //     </StyledLink>              
-        // </Container>
-
         <Container>
             <BookElement>
                 <StyledLink to={"/exchanges/requests/" + exchangeBookId}>
@@ -34,35 +24,6 @@ function ExchangeRequestBook({element, exchangeBookId}) {
 }
 
 export default ExchangeRequestBook;
-
-// const Container = styled.div`
-//     width: 100%;
-//     display: flex;
-//     flex-wrap: wrap;
-// `;
-
-// const Cover = styled.img`
-//     width: 72px;
-//     height: 105px;
-//     margin-top: 15px;
-// `;
-
-// const Info = styled.div`
-//     margin-top: 5px;
-
-//     button {
-//         :hover {
-//             cursor: pointer;
-//         }
-//     }
-// `;
-
-// const StyledLink = styled(Link)`
-//      text-decoration: none;
-//      /* display: flex;
-//      flex-wrap: wrap;
-//      flex-direction: column;  */
-// `;
 
 const Container = styled.div`
     font-family: "Inter",Helvetica,Arial,sans-serif;
@@ -109,7 +70,6 @@ const Status = styled.p`
 const BookInfo = styled.div`
     width: 100%;
     height: 170px;
-    /* background-color: blanchedalmond; */
 
     .title {
         margin-bottom: 15px;

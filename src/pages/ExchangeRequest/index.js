@@ -190,10 +190,6 @@ const Address = styled.div`
         margin-bottom: 10px;
         font-weight: 600;
     }
-
-    /* p {
-        margin-left: 10px;
-    } */
 `;
 
 const ShippingDetails = styled.div`
