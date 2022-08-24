@@ -36,7 +36,7 @@ function CreditCard({payment, setPayment}) {
           <input
             type={"tel"}
             name="expiry"
-            placeholder="MM/YY Expiração"
+            placeholder="Data de expiração (MM/YY)"
             value={payment.expirationDate}
             onChange={e => setPayment({...payment, expirationDate: e.target.value})} 
             onFocus={e => setFocus(e.target.name)}/>
