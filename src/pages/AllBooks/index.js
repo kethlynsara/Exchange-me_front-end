@@ -34,7 +34,12 @@ function AllBooks() {
                 <Container>
                     <h1>Todos os livros</h1>
                     <Books>
-                        {array.map((element, index) => <Book element={element} key={index}/>)}
+                        {array.map((element, index) => {
+                                if (element.available) {
+                                    return <Book element={element} key={index}/>
+                                }
+                            })
+                        }
                     </Books>
                 </Container>
             )
@@ -47,7 +52,12 @@ function AllBooks() {
                 <Container>
                     <h1>Livros novos</h1>
                     <Books>
-                        {books.new.map((element, index) => <Book element={element} key={index}/>)}
+                        {books.new.map((element, index) => {
+                                if (element.available) {
+                                    return <Book element={element} key={index}/>
+                                }
+                            }
+                        )}
                     </Books>
                 </Container>
             )
@@ -61,7 +71,12 @@ function AllBooks() {
                 <Container>
                     <h1>Livros recentes</h1>
                     <Books>
-                        {books.all.map((element, index) => <Book element={element} key={index}/>)}
+                        {books.all.map((element, index) => {
+                                if (element.available) {
+                                    return <Book element={element} key={index}/>
+                                }
+                            })
+                        }
                     </Books>
                 </Container>
             )                
@@ -74,7 +89,12 @@ function AllBooks() {
                 <Container>
                     <h1>Livros usados</h1>
                     <Books>
-                        {books.used.map((element, index) => <Book element={element} key={index}/>)}
+                        {books.used.map((element, index) => {
+                                if (element.available) {
+                                    return <Book element={element} key={index}/>
+                                }
+                            })
+                        }
                     </Books>
                 </Container>
             )            
@@ -91,7 +111,6 @@ export default AllBooks;
 const Container = styled.div`
     margin-top: 120px;
     margin-bottom: 50px;
-    /* padding: 30px; */
     font-family: "Inter",Helvetica,Arial,sans-serif;
     color: #161619; 
 

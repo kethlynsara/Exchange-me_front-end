@@ -2,34 +2,22 @@ import { useContext } from "react";
 import styled from "styled-components";
 import UserContext from "../contexts/UserContext";
 import { HiOutlineChevronDoubleRight, HiOutlineChevronDoubleLeft } from "react-icons/hi";
+import CreditCard from "./CreditCard";
 
 function PaymentDetails({payment, setPayment}) {
     const { setConfirmOrderStep } = useContext(UserContext);
 
     return (
         <Container>
-            <form>
-                <Input type="text" placeholder="Nome" value={payment.name} required
-                    onChange={(e) => setPayment({...payment, name: e.target.value})}></Input>
-                           
-                <Input type="text" placeholder="Número" value={payment.cardNumber} required
-                    onChange={(e) => setPayment({...payment, cardNumber: e.target.value})}></Input>
-
-                <Input type="date" placeholder="Data de expiração" value={payment.expirationDate} required
-                    onChange={(e) => setPayment({...payment, expirationDate: e.target.value})}></Input>
-
-                <Input type="number" placeholder="CVV" value={payment.cvv} required
-                    onChange={(e) => setPayment({...payment, cvv: e.target.value})}></Input>
-
-                <Icons>
-                    <BackIcon onClick={() => setConfirmOrderStep(1)}>
-                        <HiOutlineChevronDoubleLeft />
-                    </BackIcon>
-                    <NextIcon onClick={() => setConfirmOrderStep(3)}>
-                        <HiOutlineChevronDoubleRight />
-                    </NextIcon>
-                </Icons>
-            </form>
+            <CreditCard payment={payment} setPayment={setPayment}/>
+            <Icons>
+                <BackIcon onClick={() => setConfirmOrderStep(1)}>
+                    <HiOutlineChevronDoubleLeft />
+                </BackIcon>
+                <NextIcon onClick={() => setConfirmOrderStep(3)}>
+                    <HiOutlineChevronDoubleRight />
+                </NextIcon>
+            </Icons>
         </Container>
     )
 }

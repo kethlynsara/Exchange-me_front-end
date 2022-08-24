@@ -33,7 +33,11 @@ function Home() {
     function getBooksSection(array) {
         const booksSection = array.slice(0,6);
         console.log("slice", booksSection)
-        return booksSection.map((element, index) => <Book element={element} key={index}/>) 
+        return booksSection.map((element, index) => {
+            if (element.available) {
+                return <Book element={element} key={index}/>
+            }
+        }) 
     }
     
 
@@ -56,7 +60,11 @@ function Home() {
                     </ListHeader>
                     <Scroll>
                         <Books>
-                            {books.new.length <= 5 ? books.new.map((element, index) => <Book element={element} key={index}/>)
+                            {books.new.length <= 5 ? books.new.map((element, index) => {
+                                if (element.available) {
+                                    return <Book element={element} key={index}/>
+                                }
+                            })
                             : getBooksSection(books.new)                              
                             }
                         </Books>
@@ -73,7 +81,11 @@ function Home() {
                     </ListHeader>
                     <Scroll>
                         <Books>
-                            {books.all.length <= 5 ? books.all.map((element, index) => <Book element={element} key={index}/>)
+                            {books.all.length <= 5 ? books.all.map((element, index) => {
+                                if (element.available) {
+                                    return <Book element={element} key={index}/>
+                                }
+                            })
                             : getBooksSection(books.all)                              
                             }
                         </Books>  
@@ -90,7 +102,11 @@ function Home() {
                         </div>
                     </ListHeader>                <Scroll>
                         <Books>
-                            {books.used.length <= 5 ? books.used.map((element, index) => <Book element={element} key={index}/>)
+                            {books.used.length <= 5 ? books.used.map((element, index) => {
+                                if (element.available) {
+                                    return <Book element={element} key={index}/>
+                                }
+                            })
                             : getBooksSection(books.used)                              
                             }
                         </Books>
