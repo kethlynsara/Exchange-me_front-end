@@ -41,14 +41,16 @@ const Container = styled.div`
     .check-icon {
         width: 88.83px;
         height: 124.6px;
+        color: #3cab30
     }
     button {
         width: 140px;
         height: 30px;
-        background: #06070D;
+        background: #FF914C;
         border-radius: 50px;
         border: none;
         color: #fff;
         cursor: pointer;
+        font-weight: 600;
     }
 `;
