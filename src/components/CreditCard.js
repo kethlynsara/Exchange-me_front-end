@@ -13,7 +13,7 @@ function CreditCard({payment, setPayment}) {
         number={payment.cardNumber}
         name={payment.name}
         expiry={payment.expirationDate}
-        cvc={payment.cvc}
+        cvc={payment.cvv}
         focused={focus} /> 
 
       <Form>
@@ -46,7 +46,7 @@ function CreditCard({payment, setPayment}) {
             name="cvc"
             placeholder="CVC"
             value={payment.cvc}
-            onChange={e => setPayment({...payment, cvc: e.target.value})} 
+            onChange={e => setPayment({...payment, cvv: e.target.value})} 
             onFocus={e => setFocus(e.target.name)}/>          
       </Form>
     </>
