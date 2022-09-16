@@ -44,13 +44,6 @@ function ReviewOrder({payment, address}) {
                 district: address.bairro,
                 city: address.cidade,
                 uf: address.uf
-            },
-            payment: {
-                userId: userInfo.userId,
-                name: payment.name,
-                number: payment.cardNumber,
-                cvv: parseInt(payment.cvv),
-                expirationDate: payment.expirationDate   
             }
         }
         try {
