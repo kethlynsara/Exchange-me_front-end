@@ -3,6 +3,9 @@ import { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { GoSearch } from "react-icons/go";
+import 'react-toastify/dist/ReactToastify.min.css';
+import { toast } from "react-toastify";
+toast.configure();
 
 function ExchangeRegister() {
     const [isbn, setIsbn] = useState("");
@@ -26,7 +29,7 @@ function ExchangeRegister() {
             const { data } = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&key=${process.env.REACT_APP_GOOGLE_API_KEY}`);
     
             if (data.items.length !== 1) {
-                alert("Livro não encontrado!");
+                toast("Livro não encontrado!");
 
             } else {
                 setElement({
@@ -40,7 +43,7 @@ function ExchangeRegister() {
             }
         } catch (e) {
             console.log(e.response);
-            alert("Não foi possível encontrar o livro!")
+            toast("Não foi possível encontrar o livro!")
         }
     }
 

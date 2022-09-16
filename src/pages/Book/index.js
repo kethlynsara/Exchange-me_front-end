@@ -6,6 +6,9 @@ import { TbTruckDelivery } from "react-icons/tb";
 import { FiHelpCircle } from "react-icons/fi";
 import { AiOutlineSafetyCertificate } from "react-icons/ai";
 import { IoIosHeartEmpty } from "react-icons/io";
+import 'react-toastify/dist/ReactToastify.min.css';
+import { toast } from "react-toastify";
+toast.configure();
 
 function Book() {
     const { bookId } = useParams();
@@ -47,6 +50,7 @@ function Book() {
             navigate("/cart");
         } catch (error) {
             console.log(error.response);
+            toast("Operação não realizada");
         }
     }
 

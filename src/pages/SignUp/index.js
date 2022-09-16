@@ -2,6 +2,9 @@ import { useState } from "react";
 import { useNavigate, Link } from 'react-router-dom';
 import axios from "axios";
 import styled from "styled-components";
+import 'react-toastify/dist/ReactToastify.min.css';
+import { toast } from "react-toastify";
+toast.configure();
 
 function SignUp() {
     const [data, setData] = useState({
@@ -20,7 +23,8 @@ function SignUp() {
             await axios.post(`${process.env.REACT_APP_API_URL}/signup`, data);
             navigate("/signin");
         } catch (error) {
-            console.log(e.response.data.error)
+            console.log(error.response);
+            toast("Não foi possível cadastrar usuário");
         }
     }
 

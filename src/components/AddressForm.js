@@ -6,6 +6,10 @@ import { HiOutlineChevronDoubleRight } from "react-icons/hi";
 
 import UserContext from '../contexts/UserContext';
 
+import 'react-toastify/dist/ReactToastify.min.css';
+import { toast } from "react-toastify";
+toast.configure();
+
 function AddressForm({inputs, setInputs}) {
     const { setConfirmOrderStep } = useContext(UserContext);
     const [frete, setFrete] = useState(false);
@@ -33,19 +37,19 @@ function AddressForm({inputs, setInputs}) {
                         uf: data.uf
                     });
                     if (data.erro) {
-                        alert("CPF inválido!");
+                        toast("CPF inválido!");
                     }
                     console.log(data)
                 }catch(e) {
-                    alert(e.response.data);
+                    toast(e.response.data);
                 }
             } else {
                 clearForm();
-                alert("Formato de CEP inválido.");
+                toast("Formato de CEP inválido.");
             }
         } else {
             clearForm();
-            alert("Formato de CEP inválido.");
+            toast("Formato de CEP inválido.");
         }
     }
 

@@ -2,6 +2,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import 'react-toastify/dist/ReactToastify.min.css';
+import { toast } from "react-toastify";
+toast.configure();
 
 function ReviewOrder({payment, address}) {
     const [books, setBooks] = useState([]);
@@ -23,6 +26,7 @@ function ReviewOrder({payment, address}) {
                 setBooks([...data]);
             } catch (error) {
                 console.log(error.response);
+                toast("Não foi possível buscar o carrinho");
             }
         }
         getUserCart();
@@ -52,7 +56,7 @@ function ReviewOrder({payment, address}) {
             navigate("/success");
         } catch (error) {
             console.log(error.response)
-            alert("Não foi possível efetuar a compra");
+            toast("Não foi possível efetuar a compra");
         }
     }
     

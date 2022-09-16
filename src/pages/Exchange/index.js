@@ -5,6 +5,9 @@ import styled from "styled-components";
 
 import Book from "../../components/Book";
 import ExchangeRequestBook from "../../components/ExchangeRequestBook";
+import 'react-toastify/dist/ReactToastify.min.css';
+import { toast } from "react-toastify";
+toast.configure();
 
 function Exchange() {
     const [books, setBooks] = useState([]);
@@ -85,9 +88,9 @@ function Exchange() {
             cpf: ""
         });
         setWithdraw(0)
-        alert("Dados coletados com sucesso! Dentro de 24h a transferência será concluída");
         try {
-            await axios.post(`${process.env.REACT_APP_API_URL}/exchanges/user/update`, {cashback: updatedCashback.toString()}, config);            
+            await axios.post(`${process.env.REACT_APP_API_URL}/exchanges/user/update`, {cashback: updatedCashback.toString()}, config);  
+            toast("Dados coletados com sucesso! Dentro de 24h a transferência será concluída");          
         } catch (error) {
             console.log(error.response)
         }

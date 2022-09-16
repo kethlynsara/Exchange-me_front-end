@@ -2,9 +2,14 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import 'react-toastify/dist/ReactToastify.min.css';
+import { toast } from "react-toastify";
 
 import CartElement from "../../components/CartElement";
 import UserContext from "../../contexts/UserContext";
+
+toast.configure();
+
 
 function Cart() {
     const [books, setBooks] = useState([]);
@@ -27,6 +32,7 @@ function Cart() {
                 setBooks([...data]);
             } catch (error) {
                 console.log(error.response);
+                toast("Não foi possível buscar o carrinho");
             }
         }
         getUserCart();

@@ -13,7 +13,7 @@ import Checkout from "./pages/Checkout";
 import ExchangeRequest from "./pages/ExchangeRequest";
 import Book from "./pages/Book";
 import Header from "./components/Header";
-import createGlobalStyle from "./assets/css/global";
+import GlobalStyle from "./assets/css/global";
 import Success from "./pages/Success";
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
   return (
     <UserContext.Provider value={{ bookStatus, setBookStatus, pix, setPix, confirmOrderStep, setConfirmOrderStep}}>
       <BrowserRouter>
-        <createGlobalStyle />
+        <GlobalStyle />
         <Header />
         <Routes>
           <Route path="/signup" element={<SignUp />} />

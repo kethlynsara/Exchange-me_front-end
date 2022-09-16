@@ -2,6 +2,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import 'react-toastify/dist/ReactToastify.min.css';
+import { toast } from "react-toastify";
+toast.configure();
 
 function ExchangeRequest() {
     const { exchangeId } = useParams();
@@ -47,13 +50,13 @@ function ExchangeRequest() {
                     available: false
                 }, config);
 
-                alert("Operação realizada com sucesso!");
+                toast("Operação realizada com sucesso!");
                 navigate("/exchanges");
             } catch (error) {
                 console.log(error.response);
             }
         } else {
-            alert("Preencha o código de  rastreio!");  
+            toast("Preencha o código de  rastreio!");  
         } 
     }
 

@@ -2,6 +2,10 @@ import { useState } from "react";
 import { useNavigate, Link } from 'react-router-dom';
 import axios from "axios";
 import styled from "styled-components";
+import 'react-toastify/dist/ReactToastify.min.css';
+import { toast } from "react-toastify";
+toast.configure();
+
 
 function SignIn() {
     const [data, setData] = useState({
@@ -20,8 +24,8 @@ function SignIn() {
             localStorage.setItem("userInfo", serializedData);
             navigate("/");
         } catch (error) {
-            console.log(e.response)
-            alert("Dados inválidos! Tente novamente.");
+            console.log(error.response)
+            toast("Dados inválidos! Tente novamente.");
         }
     }
 

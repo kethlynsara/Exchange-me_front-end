@@ -4,6 +4,9 @@ import axios from "axios";
 import UserContext from "../../contexts/UserContext";
 
 import Book from "../../components/Book";
+import 'react-toastify/dist/ReactToastify.min.css';
+import { toast } from "react-toastify";
+toast.configure();
 
 function AllBooks() {
     const { bookStatus } = useContext(UserContext);
@@ -22,6 +25,7 @@ function AllBooks() {
                 setBooks({...books, new: data.new, used: data.used, all: data.all});
             } catch (e) {
                 console.log(e.response.data.error);
+                toast("Não foi possível buscar livros");
             }
         }
         getBooks();

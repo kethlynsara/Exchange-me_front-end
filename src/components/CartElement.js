@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { CgTrash } from "react-icons/cg";
 import axios from "axios";
+import 'react-toastify/dist/ReactToastify.min.css';
+import { toast } from "react-toastify";
+toast.configure();
 
 function CartElement({element}) {
     const userData = localStorage.getItem("userInfo");
@@ -15,7 +18,7 @@ function CartElement({element}) {
     async function removeBookFromCart(bookId) {
         try {
             await axios.delete(`${process.env.REACT_APP_API_URL}/cart/${bookId}`, config);
-            alert("Livro removido do carrinho com sucesso!");
+            toast("Livro removido do carrinho com sucesso!");
             window.location.reload();
         } catch (error) {
             console.log(error.response);
