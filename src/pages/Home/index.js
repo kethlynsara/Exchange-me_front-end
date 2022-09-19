@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useEffect, useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { IoMdArrowDropright } from 'react-icons/io';
+import { RotatingLines } from "react-loader-spinner";
 
 import HomeSlider from "../../components/Slider";
 import Book from "../../components/Book";
@@ -37,7 +38,7 @@ function Home() {
             if (element.available) {
                 return <Book element={element} key={index}/>
             }
-        }) 
+        }); 
     }
     
 
@@ -121,7 +122,9 @@ function Home() {
             </Container>
         </Box>
     )
-    : <p>Loading</p>
+    : <DivLoading>
+        <RotatingLines strokeColor="#FF914C" />
+    </DivLoading>
 }
 
 export default Home;
@@ -187,4 +190,12 @@ const Button = styled.button`
     :hover {
         cursor: pointer;
     }
+`;
+
+const DivLoading = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    width: 100%;
+    height: 100vh;
 `;

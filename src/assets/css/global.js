@@ -13,6 +13,4 @@ export default createGlobalStyle`
             cursor: pointer;
         }
     }
-
-  // Adicione quais mais regras desejar!
 `;

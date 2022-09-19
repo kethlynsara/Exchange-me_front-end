@@ -4,6 +4,7 @@ import axios from "axios";
 import styled from "styled-components";
 import 'react-toastify/dist/ReactToastify.min.css';
 import { toast } from "react-toastify";
+import { ThreeDots } from "react-loader-spinner";
 toast.configure();
 
 function SignUp() {
@@ -13,18 +14,27 @@ function SignUp() {
         password: "",
         confirmPassword: ""
     });
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     async function signUp(e) {
         e.preventDefault();
         console.log("data", data)
+        const regex = /([A-Za-z0-9]{6})/;
 
-        try {
-            await axios.post(`${process.env.REACT_APP_API_URL}/signup`, data);
-            navigate("/signin");
-        } catch (error) {
-            console.log(error.response);
-            toast("Não foi possível cadastrar usuário");
+        if (data.password !== data.confirmPassword) {
+            toast("As senhas devem ser iguais");
+        } else if (!regex.test(data.password) || !regex.test(data.confirmPassword)){
+            toast("A senha deve conter somente letras e números");
+        } else {
+            try {
+                setLoading(true);
+                await axios.post(`${process.env.REACT_APP_API_URL}/signup`, data);
+                navigate("/signin");
+            } catch (error) {
+                console.log(error.response);
+                toast("Não foi possível cadastrar usuário");
+            }
         }
     }
 
@@ -37,7 +47,15 @@ function SignUp() {
                     <input type="email" placeholder="Email" required value={data.email} onChange={e => setData({...data, email: e.target.value})} />
                     <input type="password" placeholder="Senha" required value={data.password} onChange={e => setData({...data, password: e.target.value})} />
                     <input type="password" placeholder="Confirme a senha" required value={data.confirmPassword} onChange={e => setData({...data, confirmPassword: e.target.value})} />
+                    
+                    {!loading ? 
                     <button type="submit">Sign Up</button>
+                    :
+                    <DivLoading>
+                        <ThreeDots color="#FFFFFF" width={50}/>
+                    </DivLoading>
+                    }
+
                     <StyledLink to="/signin">Já tem uma conta? Entre agora!</StyledLink>
                 </form>
             </Box>
@@ -85,6 +103,7 @@ const Box = styled.div`
         background: #FFFFFF;
         border: none;
         margin-bottom: 13px; 
+        padding-left: 10px;    
     }
 
     form {
@@ -123,6 +142,20 @@ const Box = styled.div`
     @media (min-width: 438px) {
         width: 90%;
     }
+`;
+
+const DivLoading = styled.div`
+    background-color: #FF914C;
+    border: none;
+    width: 100%;
+    height: 40px;
+    color: #FFFFFF;
+    margin-bottom: 20px;
+    margin-top: 15px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
 const StyledLink = styled(Link)`

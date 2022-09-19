@@ -105,13 +105,6 @@ function AddressForm({inputs, setInputs}) {
 
 export default AddressForm;
 
-const H1 = styled.h1`
-    font-weight: 600;
-    font-size: 20px;
-    color: #000000;
-    margin-bottom: 48px;
-`;
-
 const Frete = styled.div`
     width: 120px;
     height: 40px;
@@ -171,25 +164,6 @@ const Input = styled.input`
     border: none;
     margin-bottom: 13px;
     padding-left: 15px;
-`;
-
-
-const Button = styled.div`
-    width: 100%;
-    height: 40px;
-    border: none;  
-    padding-top: 11px;
-    font-weight: 700;
-    font-size: 20px;
-    text-align: center;
-    color: #ffffff;
-    background-color: #06070D;
-    
-    &:hover {
-        cursor: pointer;
-        background-color: #929292;
-    }
-    
 `;
 
 const Container = styled.div`

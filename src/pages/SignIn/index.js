@@ -4,6 +4,7 @@ import axios from "axios";
 import styled from "styled-components";
 import 'react-toastify/dist/ReactToastify.min.css';
 import { toast } from "react-toastify";
+import { ThreeDots } from "react-loader-spinner";
 toast.configure();
 
 
@@ -12,12 +13,14 @@ function SignIn() {
         email: "",
         password: "",
     });
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     async function login(e) {
         e.preventDefault();
 
         try {
+            setLoading(true);
             const {data: userInfo} = await axios.post(`${process.env.REACT_APP_API_URL}/signin`, data);
             console.log(userInfo);
             const serializedData = JSON.stringify(userInfo);
@@ -35,8 +38,17 @@ function SignIn() {
                 <form onSubmit={login}>
                     <h1>Login</h1>
                     <input type="email" placeholder="Email" required value={data.email} onChange={e => setData({...data, email: e.target.value})} />
-                    <input type="password" placeholder="Senha" required value={data.password} onChange={e => setData({...data, password: e.target.value})} />
+                    <input type="password" placeholder="Senha" required value={data.password} onChange={e => setData({...data, password: e.target.value})} />                  
+
+                    {!loading ? 
                     <button type="submit">Sign In</button>
+                    :
+                    <DivLoading>
+                        <ThreeDots color="#FFFFFF" width={50}/>
+                    </DivLoading>
+                    }
+
+                    
                     <StyledLink to="/signup">Primeira vez? Cadastre-se!</StyledLink>
 
                 </form>
@@ -56,16 +68,8 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
 
-    /* @media (min-width: 500px) {
-        justify-content: center;
-        padding: 0;
-    } */
-
-
     @media (min-width: 1172px) {
         padding: 10%;
-        /* padding: 15px 70px;
-        height: 700px; */
     }
 `;
 
@@ -92,6 +96,7 @@ const Box = styled.div`
         background: #FFFFFF;
         border: none;
         margin-bottom: 13px; 
+        padding-left: 10px;
     }
 
     form {
@@ -110,6 +115,8 @@ const Box = styled.div`
             color: #FFFFFF;
             margin-bottom: 20px;
             margin-top: 15px;
+            font-weight: 600;
+            font-size: 17px;
 
             :hover {
                 cursor: pointer;
@@ -129,6 +136,20 @@ const Box = styled.div`
     @media (min-width: 438px) {
         width: 90%;
     }
+`;
+
+const DivLoading = styled.div`
+    background-color: #FF914C;
+    border: none;
+    width: 100%;
+    height: 40px;
+    color: #FFFFFF;
+    margin-bottom: 20px;
+    margin-top: 15px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
 const StyledLink = styled(Link)`

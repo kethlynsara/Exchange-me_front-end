@@ -8,6 +8,7 @@ import { AiOutlineSafetyCertificate } from "react-icons/ai";
 import { IoIosHeartEmpty } from "react-icons/io";
 import 'react-toastify/dist/ReactToastify.min.css';
 import { toast } from "react-toastify";
+import { RotatingLines } from "react-loader-spinner";
 toast.configure();
 
 function Book() {
@@ -18,7 +19,7 @@ function Book() {
 
     const userData = localStorage.getItem("userInfo");
     const userInfo = JSON.parse(userData);
-    // const { token, userId } = userInfo;
+    
     let token = "";
     let userId;
     if (userInfo !== null) {
@@ -107,7 +108,9 @@ function Book() {
                  </Details>}                
             </BookDetails>
         </Container>
-    ) : <p>Loading...</p>
+    ) : <DivLoading>
+            <RotatingLines strokeColor="#FF914C" />
+        </DivLoading>
 }
 
 export default Book;
@@ -260,10 +263,6 @@ const Status = styled.p`
     margin-bottom: 20px;
     font-size: 15px;
     color: ${(props) => props.color};
-
-    /* @media (min-width: 948px) {
-        margin-left: -235px;
-    } */
 `;
 
 const Box = styled.div`
@@ -342,4 +341,12 @@ const Wishlist = styled.div`
             height: 12px;
         }
     }
+`;
+
+const DivLoading = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    width: 100%;
+    height: 100vh;
 `;
