@@ -135,6 +135,11 @@ const Frete = styled.div`
     &:hover {
         cursor: pointer;
     }
+
+    &:focus {
+        outline: none !important;
+        border:1px solid #575759;
+    }
 `;
 
 const Box = styled.div`
@@ -164,6 +169,11 @@ const Input = styled.input`
     border: none;
     margin-bottom: 13px;
     padding-left: 15px;
+
+    :focus {
+        outline: none !important;
+        border:1px solid #575759;
+    }
 `;
 
 const Container = styled.div`
@@ -182,10 +192,16 @@ const Container = styled.div`
         justify-content: center;
         align-items: center;
     }
+
     input::placeholder {
         font-size: 15px;
         font-weight: 400;
         color: #06070D;
+    }
+
+    input:focus {
+        outline: none !important;
+        border: 1px solid #575759;
     }
 `;
 
@@ -209,5 +225,10 @@ const NextIcon = styled.div`
 
     &:hover {
         cursor: pointer;
+    }
+
+    :focus {
+        outline: none !important;
+        border:1px solid #575759;
     }
 `;

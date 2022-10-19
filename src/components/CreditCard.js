@@ -75,5 +75,10 @@ const Form = styled.form`
         border: none;
         margin-bottom: 13px;
         padding-left: 15px;
+
+        :focus {
+            outline: none !important;
+            border:1px solid #575759;
+        }
     }
 `;

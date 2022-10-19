@@ -159,6 +159,11 @@ const Box = styled.div`
         border: none;
         margin-bottom: 13px;
         padding-left: 15px;
+
+        :focus {
+            outline: none !important;
+            border:1px solid #575759;
+        }
     }
 
     textarea {
@@ -169,6 +174,11 @@ const Box = styled.div`
         margin-bottom: 13px;
         padding-left: 15px;
         padding-top: 15px;
+
+        :focus {
+            outline: none !important;
+            border:1px solid #575759;
+        }
     }
 
     select {
@@ -183,6 +193,11 @@ const Box = styled.div`
         :hover {
             cursor: pointer;
             background-color: #FF914C;
+        }
+
+        :focus {
+            outline: none !important;
+            border:1px solid #575759;
         }
     }
 
@@ -200,6 +215,12 @@ const Box = styled.div`
         :hover {
             cursor: pointer;
         }
+
+        :focus {
+            outline: none !important;
+            border:1px solid #575759;
+        }
+
     }
 
     @media (min-width: 504px) {
@@ -219,6 +240,11 @@ const SearchIsbn = styled.div`
         border: none;
         margin-bottom: 13px;
         padding-left: 15px;
+
+        :focus {
+            outline: none !important;
+            border:1px solid #575759;
+        }
     }
 
     svg {

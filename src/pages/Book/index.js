@@ -184,6 +184,11 @@ const BookInfo = styled.div`
         :hover {
             cursor: pointer;
         }
+
+        :focus {
+            outline: none !important;
+            border:1px solid #575759;
+        }
     }
 
     @media (min-width: 948px) {
@@ -200,6 +205,7 @@ const BookInfo = styled.div`
         button {
             width: 55%;
             margin-top: 50px;
+
         }
     }
 `;
@@ -228,6 +234,11 @@ const DetailsTitle = styled.p`
     :hover {
         color: #FF914C;
     }
+
+    :focus {
+        outline: none !important;
+        border:1px solid #575759;
+    }
 `; 
 
 const DescriptionTitle = styled.p`
@@ -236,6 +247,11 @@ const DescriptionTitle = styled.p`
 
     :hover {
         color: #FF914C;
+    }
+
+    :focus {
+        outline: none !important;
+        border:1px solid #575759;
     }
 `; 
 
@@ -311,6 +327,11 @@ const Wishlist = styled.div`
     :hover {
         color: #FF914C;
         cursor: pointer;
+    }
+
+    :focus {
+        outline: none !important;
+        border:1px solid #575759;
     }
 
     p {

@@ -249,6 +249,7 @@ const Withdraw = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
+
     input {        
         width: 326px;
         height: 40px;
@@ -256,6 +257,11 @@ const Withdraw = styled.form`
         border: none;
         margin-bottom: 13px;
         padding-left: 15px;
+
+        :focus {
+            outline: none !important;
+            border:1px solid #575759;
+        }
     }
 
     p {
@@ -271,8 +277,14 @@ const Withdraw = styled.form`
         height: 30px;
         width: 120px;
         font-weight: 600;
+
         :hover {
             cursor: pointer;
+        }
+
+        :focus {
+            outline: none !important;
+            border:1px solid #575759;
         }
     }
 `;

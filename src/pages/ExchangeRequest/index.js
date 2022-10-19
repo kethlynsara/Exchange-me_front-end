@@ -76,7 +76,7 @@ function ExchangeRequest() {
                         </BookCover>
                         <BookInfo>
                             <p className="title">{exchanges.orderBook.book.title}</p>
-                            <Status color={exchanges.orderBook.book.conservationState === "used" ? "#fc930a" : "#29de02"} >{exchanges.orderBook.book.conservationState === "used" ? "USADO" : "NOVO"}</Status>
+                            <Status color={exchanges.orderBook.book.conservationState === "used" ? "#7e0b7d" : "#29de02"} >{exchanges.orderBook.book.conservationState === "used" ? "USADO" : "NOVO"}</Status>
                             <p className="price">R$ {exchanges.orderBook.book.price}</p>
                         </BookInfo>
                         <Info>
@@ -87,12 +87,12 @@ function ExchangeRequest() {
                                 <p>{exchanges.orderBook.order.address.district} - {exchanges.orderBook.order.address.uf}</p>
                             </Address>
                             <ShippingDetails>
-                                <p className="info1">Envie o livro para o endereço indicado, digite o código de ratreio fornecido pelos correios e receba seu cashback</p>
+                                <p className="info1">Envie o livro para o endereço indicado, digite o código de ratreio fornecido pelos correios e receba seu cashback.</p>
                                 <div>
                                     <input type="text" placeholder="Código de rastreio" required value={code} onChange={(e) => setCode(e.target.value)}/>
                                     <button disabled={disable} onClick={updateCashback}>Confirmar</button>
                                 </div>
-                                <p className="info2">Mais informações à respeito da entrega foram enviadas ao seu email de registro</p>
+                                <p className="info2">Mais informações à respeito da entrega foram enviadas ao seu email de registro.</p>
                             </ShippingDetails>
                         </Info>                        
                     </Container>
@@ -190,6 +190,7 @@ const Status = styled.p`
 
 const Address = styled.div`
     margin: 15px;
+    margin-top: 25px;
 
     h2 {
         margin-bottom: 10px;
@@ -211,18 +212,24 @@ const ShippingDetails = styled.div`
     button {
         border: none;
         border-radius: 2px;
-        background-color: #161619;
+        background-color: #FF914C;
         height: 25px;
         color: #FFFFFF;
     }
 
     .info2 {
-        margin-top: 15px;
+        margin-top: 40px;
+        margin-bottom: 30px;
     }
 
     div {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-evenly;
+
+        input:focus {
+            outline: none !important;
+            border:1px solid #575759;
+        }
     }
 `;
 

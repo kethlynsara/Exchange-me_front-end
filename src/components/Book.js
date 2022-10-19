@@ -100,6 +100,11 @@ const BookElement = styled.div`
         :hover {
             cursor: pointer;
         }
+
+        :focus {
+            outline: none !important;
+            border:1px solid #575759;
+        }
     }
 `;
 

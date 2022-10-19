@@ -97,6 +97,11 @@ const Box = styled.div`
         border: none;
         margin-bottom: 13px; 
         padding-left: 10px;
+
+        :focus {
+            outline: none !important;
+            border:1px solid #575759;
+        }
     }
 
     form {
@@ -120,6 +125,11 @@ const Box = styled.div`
 
             :hover {
                 cursor: pointer;
+            }
+
+            :focus {
+                outline: none !important;
+                border:1px solid #575759;
             }
         }
 

@@ -54,6 +54,11 @@ const Container = styled.div`
         font-weight: 400;
         color: #06070D;
     }
+
+    input:focus {
+        outline: none !important;
+        border:1px solid #575759;
+    }
 `;
 
 const NextIcon = styled.div`
@@ -72,6 +77,11 @@ const NextIcon = styled.div`
 
     &:hover {
         cursor: pointer;
+    }
+
+    &:focus {
+        outline: none !important;
+        border:1px solid #575759;
     }
 `;
 
@@ -93,6 +103,11 @@ const BackIcon = styled.div`
 
     &:hover {
         cursor: pointer;
+    }
+
+    &:focus {
+        outline: none !important;
+        border:1px solid #575759;
     }
 `;
 
